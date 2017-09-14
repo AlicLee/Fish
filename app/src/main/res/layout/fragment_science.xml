@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="科普"
+            android:textColor="@color/black"
+            android:textSize="@dimen/f_24" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/mp_1"
+            android:layout_alignParentBottom="true"
+            android:background="@color/black" />
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/science_radiogroup"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/mp_15"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/science_left_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/science_radio_left"
+            android:button="@null"
+            android:gravity="center|center_horizontal"
+            android:text="淡水鱼"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/f_20" />
+
+        <RadioButton
+            android:id="@+id/science_right_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/science_radio_right"
+            android:button="@null"
+            android:gravity="center|center_horizontal"
+            android:text="深海鱼"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/f_20" />
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/science_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mp_15">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
