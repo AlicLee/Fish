@@ -13,7 +13,7 @@ public class SharedPreferencesUtil {
 
     public SharedPreferencesUtil(Context context) {
         this.mContext = context;
-        sharedPreferences = mContext.getSharedPreferences("Fish", Context.MODE_PRIVATE);
+        this.sharedPreferences = mContext.getSharedPreferences("Fish", Context.MODE_PRIVATE);
     }
 
     public void saveObject(String saveName, String saveValue) {

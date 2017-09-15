@@ -10,7 +10,8 @@ import android.util.Log;
  */
 
 public class ScienceDBHelper extends SQLiteOpenHelper {
-    private final String TAG=ScienceDBHelper.class.getSimpleName();
+    private final String TAG = ScienceDBHelper.class.getSimpleName();
+
     public ScienceDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -32,6 +33,6 @@ public class ScienceDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        Log.i(TAG,"更新数据库--------->");
+        Log.i(TAG, "更新数据库--------->");
     }
 }

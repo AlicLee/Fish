@@ -22,7 +22,6 @@ public class DensityUtil {
                 .getMetrics(displaysMetrics);
         int windowsheight = displaysMetrics.heightPixels;
         return windowsheight;
-
     }
 
     /**
