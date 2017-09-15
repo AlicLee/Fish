@@ -1,5 +1,6 @@
 package com.example.kys.fish.view.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
 import com.example.kys.fish.presenter.LoginPresenter;
 import com.example.kys.fish.presenter.impl.LoginImpl;
+import com.example.kys.fish.view.main.MainActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -41,7 +43,7 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
         String nickName = loginNickName.getText().toString();
         String passWord = loginPassWord.getText().toString();
         loginPresenter.login(nickName, passWord);
-//        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override

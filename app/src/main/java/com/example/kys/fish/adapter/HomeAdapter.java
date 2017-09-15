@@ -27,15 +27,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         CardView cardView;
         ImageView homeImage;
         TextView homeContent;
-        TextView comment_tv;
 
 
         public ViewHolder(View view){
             super(view);
             cardView=(CardView)view;
-            homeImage=(ImageView)view.findViewById(R.id.home_img);
+            homeImage=(ImageView)view.findViewById(R.id.home_adapter_img);
             homeContent=(TextView)view.findViewById(R.id.home_content);
-            comment_tv=(TextView)view.findViewById(R.id.comment_tv);
           }
           }
         public HomeAdapter(List<Home>homeList){
@@ -61,8 +59,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         Home home=mHomeList.get(position);
         holder.homeContent.setText(home.getContent());
-        holder.comment_tv.setText(home.getComment());
-        Glide.with(context).load(home.getImageId()).into(holder.homeImage);//使用glide来加载图片
+         //使用glide来加载图片
+        Glide.with(context).load(home.getImageId()).into(holder.homeImage);
         }
 
         /**告诉RecycleView一共有多少项*/
@@ -71,3 +69,4 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         return mHomeList.size();
         }
         }
+
