@@ -16,7 +16,7 @@ import com.example.kys.fish.model.Home;
 import java.util.List;
 
 /**
- * Created by Lee on 2017/9/9.
+ * Created by 张静静 on 2017/9/9.
  */
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
