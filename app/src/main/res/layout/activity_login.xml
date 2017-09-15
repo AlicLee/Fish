@@ -49,14 +49,14 @@
         android:layout_weight="30">
 
         <TextView
-            android:id="@+id/register_btn"
+            android:id="@+id/register_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@drawable/login_txt_selector"
             android:text="用户注册" />
 
         <TextView
-            android:id="@+id/forgetpassword_btn"
+            android:id="@+id/forgetpassword_tv"
             android:layout_width="wrap_content"
             android:textColor="@drawable/login_txt_selector"
             android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             android:layout_height="50dp"
             android:layout_below="@+id/register_btn"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/mp_10"
+            android:layout_marginTop="@dimen/mp_30"
             android:background="@drawable/login_btn_bg"
             android:text="登  录"
             android:textColor="@color/white"

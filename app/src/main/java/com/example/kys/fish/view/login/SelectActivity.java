@@ -13,6 +13,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
@@ -23,9 +24,13 @@ import java.io.InputStream;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
+
+import static android.R.attr.y;
 
 /**
  * Created by Lee on 2017/9/15.
@@ -106,7 +111,7 @@ public class SelectActivity extends BaseActivity {
         preference = this.getSharedPreferences("Fish", MODE_PRIVATE);
         boolean isFirst = preference.getBoolean("isFirstRun", true);
         if (isFirst) {
-            readExcelToDataBase();
+//            readExcelToDataBase();
         }
         SharedPreferences.Editor editor = this.getSharedPreferences("Fish", MODE_PRIVATE).edit();
         editor.putBoolean("isFirstRun", false);
@@ -143,7 +148,6 @@ public class SelectActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.select_register_btn:
-
                 break;
             case R.id.select_login_login:
                 startActivity(new Intent(SelectActivity.this, LoginActivity.class));
