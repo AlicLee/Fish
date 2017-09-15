@@ -27,6 +27,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         CardView cardView;
         ImageView homeImage;
         TextView homeContent;
+        TextView comment_tv;
 
 
         public ViewHolder(View view){
@@ -34,6 +35,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
             cardView=(CardView)view;
             homeImage=(ImageView)view.findViewById(R.id.home_img);
             homeContent=(TextView)view.findViewById(R.id.home_content);
+            comment_tv=(TextView)view.findViewById(R.id.comment_tv);
           }
           }
         public HomeAdapter(List<Home>homeList){
@@ -59,6 +61,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         Home home=mHomeList.get(position);
         holder.homeContent.setText(home.getContent());
+        holder.comment_tv.setText(home.getComment());
         Glide.with(context).load(home.getImageId()).into(holder.homeImage);//使用glide来加载图片
         }
 
