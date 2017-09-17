@@ -19,10 +19,6 @@ import rx.Observable;
 
 public interface ApiService {
     public static final String BASE_URL = "http://172.18.74.9/";
-//    public static final String BASE_URL ="http://192.168.87.59:8080/";
-//    @FormUrlEncoded
-    @POST("login/{nickName}")
-    Observable<WrapperRspEntity<Login>> loginReq(@Path("nickName") String userName, @Field("passWord") String passWord);
 
 //    @FormUrlEncoded
     @GET("{url}")

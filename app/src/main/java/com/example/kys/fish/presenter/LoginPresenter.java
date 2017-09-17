@@ -60,9 +60,6 @@ public class LoginPresenter implements LoginImpl.Presenter {
         JSONObject requestData = new JSONObject();
         try {
             requestData.put("nickname", "123456");
-            requestData.put("initiator","123456");
-            requestData.put("content","123456");
-            requestData.put("create_time","123456");
         } catch (JSONException e) {
             e.printStackTrace();
         }

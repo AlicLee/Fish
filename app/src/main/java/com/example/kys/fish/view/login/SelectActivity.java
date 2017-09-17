@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
 import com.example.kys.fish.util.DensityUtil;
+import com.example.kys.fish.view.main.Register;
 
 import java.io.InputStream;
 
@@ -148,6 +149,7 @@ public class SelectActivity extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.select_register_btn:
+                startActivity(new Intent(SelectActivity.this, Register.class));
                 break;
             case R.id.select_login_login:
                 startActivity(new Intent(SelectActivity.this, LoginActivity.class));

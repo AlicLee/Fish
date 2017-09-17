@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.example.kys.fish.R;
 import com.example.kys.fish.adapter.HomeAdapter;
+import com.example.kys.fish.model.Comment;
 import com.example.kys.fish.model.Home;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -54,6 +55,7 @@ public class HomeFragment extends Fragment{
     private HomeAdapter adapter;
     private RecyclerView home_list_view;
     private SmartRefreshLayout refreshLayout;
+    private List<Comment>commentList=new ArrayList<Comment>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class HomeFragment extends Fragment{
         home_list_view.setLayoutManager(layoutManager);
         adapter=new HomeAdapter(homeList);
         home_list_view.setAdapter(adapter);
+        initComment();
 
 
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -81,6 +84,7 @@ public class HomeFragment extends Fragment{
         });
         return mView;
     }
+
 
 
     /**从刚才定义的数组中随机挑选一个放到homeList中，为了时数据多，这里设为一个循环*/
@@ -102,6 +106,10 @@ public class HomeFragment extends Fragment{
                 searchEdit.setText("");
                 break;
         }
+    }
+    private void initComment(){
+       Comment apple=new Comment("Apple","123");
+        commentList.add(apple);
     }
 
     /**
