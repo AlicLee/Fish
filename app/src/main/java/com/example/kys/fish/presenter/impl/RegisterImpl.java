@@ -21,5 +21,4 @@ public interface RegisterImpl {
         void Register(String nickName, String name, String passWord);
     }
 
-
 }

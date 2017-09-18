@@ -60,7 +60,8 @@ public class LoginPresenter implements LoginImpl.Presenter {
     public void login(String nickName, String passWord) {
         JSONObject requestData = new JSONObject();
         try {
-            requestData.put("nickname", "123456");
+            requestData.put("nickName", nickName);
+            requestData.put("passWord", passWord);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -68,7 +69,7 @@ public class LoginPresenter implements LoginImpl.Presenter {
 //        String token = DeviceIdFactory.getuniqueId(mLoginView);
 //        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("onchat", requestBody)
+                .executePost("login", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<ResponseBody>(mLoginView) {
@@ -84,9 +85,9 @@ public class LoginPresenter implements LoginImpl.Presenter {
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
-                        Log.e(TAG, "responeBody:" + responseBody);
                         try {
                             JSONObject jsonObject = new JSONObject(InterceptorUtils.getRspData(responseBody));
+                            Log.e(TAG, "respone:" + jsonObject);
                             String Code = jsonObject.getString("Code");
                             if (Code.equals("1")) {
                                 mLoginView.showLoginSuccess();

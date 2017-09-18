@@ -35,17 +35,17 @@ public class ScienceFragment extends Fragment implements ScienceImpl.View {
     @InjectView(R.id.science_radiogroup)
     RadioGroup scienceRadiogroup;
 
-    //private ScienceDBHelper scienceDBHelper;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_science, container, false);
-        initView(mView);
         ButterKnife.inject(this, mView);
+        initView(mView);
         return mView;
     }
 
     private void initView(View mView) {
+        scienceLeftRadio.setChecked(true);
         scienceRadiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {

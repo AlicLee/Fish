@@ -205,7 +205,6 @@ public class RegisterActivity extends BaseActivity implements RegisterImpl.View 
         return m.matches();
     }
 
-
     private void createProgressBar() {
         FrameLayout layout = (FrameLayout) findViewById(android.R.id.content);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(

@@ -42,7 +42,7 @@
             android:button="@null"
             android:gravity="center|center_horizontal"
             android:text="淡水鱼"
-            android:textColor="@color/blue"
+             android:textColor="@drawable/science_radiotxt_selector"
             android:textSize="@dimen/f_20" />
 
         <RadioButton
@@ -54,7 +54,7 @@
             android:button="@null"
             android:gravity="center|center_horizontal"
             android:text="深海鱼"
-            android:textColor="@color/blue"
+            android:textColor="@drawable/science_radiotxt_selector"
             android:textSize="@dimen/f_20" />
     </RadioGroup>
 

@@ -3,14 +3,17 @@ package com.example.kys.fish.view.main;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
@@ -69,6 +72,8 @@ public class MainActivity extends BaseActivity {
     int[] mNormalDrawables = new int[]{R.mipmap.home_gray, R.mipmap.science_gray, R.mipmap.business_gray, R.mipmap.news_gray, R.mipmap.personal_gray};
     int[] mClickedDrawables = new int[]{R.mipmap.home_blue, R.mipmap.science_blue, R.mipmap.business_blue, R.mipmap.news_blue, R.mipmap.personal_blue};
     int SelectTabIndex = 0;//选中那个fragment
+    //退出时的时间
+    private long mExitTime;
 
     @Override
 
@@ -152,6 +157,37 @@ public class MainActivity extends BaseActivity {
             case R.id.personal_layout:
                 setSelectTab(4);
                 break;
+        }
+    }
+
+    /**
+     * 返回键监听
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 连按两次退出程序
+     */
+    private void exit() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            mExitTime = System.currentTimeMillis();
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
         }
     }
 }

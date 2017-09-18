@@ -55,7 +55,6 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
         String nickName = loginNickName.getText().toString();
         String passWord = loginPassWord.getText().toString();
         loginPresenter.login(nickName, passWord);
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override
@@ -65,13 +64,14 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
 
     @Override
     public void setLoadingIndicator(boolean active) {
-//        if(active){
-//        }
+
     }
 
     @Override
     public void showLoginSuccess() {
         Toast.makeText(getApplicationContext(), "登陆成功,即将跳转", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        this.finish();
     }
 
     @Override
