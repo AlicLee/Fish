@@ -6,6 +6,7 @@ package com.example.kys.fish.config;
 
 public class AppConfig {
     public static String TOKEN = "";
-    public static int SUCCESS_CODE = 200;
+    public static int SUCCESS_CODE = 1;
+    public static int FAILURE_CODE = 0;
     public static int TOKEN_EXPRIED = 40001;
 }

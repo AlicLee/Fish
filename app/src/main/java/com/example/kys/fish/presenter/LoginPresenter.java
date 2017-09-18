@@ -8,6 +8,7 @@ import com.example.kys.fish.httpnetworks.ApiService;
 import com.example.kys.fish.httpnetworks.BaseSubscriber;
 import com.example.kys.fish.httpnetworks.HttpMethods;
 import com.example.kys.fish.presenter.impl.LoginImpl;
+import com.example.kys.fish.util.InterceptorUtils;
 import com.example.kys.fish.view.login.LoginActivity;
 
 import org.json.JSONException;
@@ -63,11 +64,11 @@ public class LoginPresenter implements LoginImpl.Presenter {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), requestData.toString());
+        final RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), requestData.toString());
 //        String token = DeviceIdFactory.getuniqueId(mLoginView);
 //        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("onchat",requestBody)
+                .executePost("onchat", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<ResponseBody>(mLoginView) {
@@ -84,7 +85,18 @@ public class LoginPresenter implements LoginImpl.Presenter {
                     @Override
                     public void onNext(ResponseBody responseBody) {
                         Log.e(TAG, "responeBody:" + responseBody);
-                        mLoginView.showLoginSuccess();
+                        try {
+                            JSONObject jsonObject = new JSONObject(InterceptorUtils.getRspData(responseBody));
+                            String Code = jsonObject.getString("Code");
+                            if (Code.equals("1")) {
+                                mLoginView.showLoginSuccess();
+                            } else if (Code.equals("0")) {
+                                mLoginView.showLoginError();
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+//                        mLoginView.showLoginSuccess();
                     }
                 });
     }

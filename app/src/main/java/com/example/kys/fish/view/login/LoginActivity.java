@@ -18,8 +18,6 @@ import com.example.kys.fish.view.main.MainActivity;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
 
 /**
  * Created by Lee on 2017/9/6.
@@ -42,41 +40,15 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
         loginPresenter = new LoginPresenter(this);
-        TextView register_tv=(TextView)findViewById(R.id.register_tv);
-        TextView forgetpassword_tv=(TextView)findViewById(R.id.forgetpassword_tv);
+        TextView register_tv = (TextView) findViewById(R.id.register_tv);
+        TextView forgetpassword_tv = (TextView) findViewById(R.id.forgetpassword_tv);
         register_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventHandler eventHandler = new EventHandler() {
-                    public void afterEvent(int event, int result, Object data) {
-                        if (data instanceof Throwable) {
-                            Throwable throwable = (Throwable) data;
-                            String msg = throwable.getMessage();
-                            Toast.makeText(LoginActivity.this, msg, Toast.LENGTH_SHORT).show();
-                        } else {
-
-                            if (event ==SMSSDK.EVENT_GET_VERIFICATION_CODE) {
-                                // 处理你自己的逻辑
-                            }
-                        }
-                    }
-                };
-
-                // 注册监听器
-                SMSSDK.registerEventHandler(eventHandler);
-
-
-    }
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
         });
     }
-
-        // 如果希望在读取通信录的时候提示用户，可以添加下面的代码，
-        //并且必须在其他代码调用之前，否则不起作用；如果没这个需求，可以不加这行代码
-        // SMSSDK.setAskPermisionOnReadContact(boolShowInDialog);
-        // 创建EventHandler对象
-
-
-
 
     @OnClick(R.id.login_login)
     public void onViewClicked() {
@@ -88,7 +60,7 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
 
     @Override
     public void setPresenter(Object presenter) {
-        this.loginPresenter=(LoginPresenter) presenter;
+        this.loginPresenter = (LoginPresenter) presenter;
     }
 
     @Override

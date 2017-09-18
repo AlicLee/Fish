@@ -10,9 +10,9 @@ import java.util.HashMap;
  */
 
 public class Response {
-    @SerializedName("code")
+    @SerializedName("Code")
     private int code;
-    @SerializedName("message")
+    @SerializedName("Message")
     private String message;
     @SerializedName("data")
     private HashMap<String, Object> data;

@@ -8,4 +8,17 @@
         <item name="colorAccent">@color/blue</item>
     </style>
 
+    <style name="LoginEditStyle" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:layout_width">300dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="TextSelectorStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:drawable">@drawable/login_txt_selector</item>
+    </style>
 </resources>

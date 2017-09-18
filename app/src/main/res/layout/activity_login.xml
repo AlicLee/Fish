@@ -24,20 +24,19 @@
 
         <EditText
             android:id="@+id/login_nickName"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            style="@style/LoginEditStyle"
             android:layout_above="@+id/login_passWord"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/nickname_editleft_selector"
             android:hint="账号" />
 
         <EditText
             android:id="@+id/login_passWord"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            style="@style/LoginEditStyle"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/password_editleft_selector"
             android:hint="密码" />
     </RelativeLayout>
 
@@ -50,15 +49,15 @@
 
         <TextView
             android:id="@+id/register_tv"
+            style="@style/TextSelectorStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@drawable/login_txt_selector"
             android:text="用户注册" />
 
         <TextView
             android:id="@+id/forgetpassword_tv"
+            style="@style/TextSelectorStyle"
             android:layout_width="wrap_content"
-            android:textColor="@drawable/login_txt_selector"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="忘记密码?" />
@@ -67,7 +66,7 @@
             android:id="@+id/login_login"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_below="@+id/register_btn"
+            android:layout_below="@+id/register_tv"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/mp_30"
             android:background="@drawable/login_btn_bg"

@@ -8,8 +8,7 @@ import com.example.kys.fish.httpnetworks.ApiService;
 import com.example.kys.fish.httpnetworks.BaseSubscriber;
 import com.example.kys.fish.httpnetworks.HttpMethods;
 import com.example.kys.fish.presenter.LoginPresenter;
-import com.example.kys.fish.view.login.LoginActivity;
-import com.example.kys.fish.view.main.Register;
+import com.example.kys.fish.view.login.RegisterActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,8 +18,6 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
-import static android.R.attr.phoneNumber;
 
 /**
  * Created by kys on 2017/9/16.
@@ -35,10 +32,10 @@ public class RegisterPresenter implements RegisterImpl.Presenter{
     private  String name;
     //    private LoginRepository mLoginRepository;
     //    private LoginData mLoginData;
-    private Register mRegisterView;
+    private RegisterActivity mRegisterView;
     private final String TAG = LoginPresenter.class.getSimpleName();
 
-    public RegisterPresenter(@NonNull Register RegisterView) {
+    public RegisterPresenter(@NonNull RegisterActivity RegisterView) {
         this.mRegisterView = RegisterView;
 //        mLoginView = checkNotNull(mLoginView, "loginView 不能为空");
         mRegisterView.setPresenter(this);
@@ -67,7 +64,6 @@ public class RegisterPresenter implements RegisterImpl.Presenter{
             requestData.put("nickName",nickName);
             requestData.put("name",name);
             requestData.put("passWord",passWord);
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
