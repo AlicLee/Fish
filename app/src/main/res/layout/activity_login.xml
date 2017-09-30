@@ -36,6 +36,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:password="true"
             android:drawableLeft="@drawable/password_editleft_selector"
             android:hint="密码" />
     </RelativeLayout>

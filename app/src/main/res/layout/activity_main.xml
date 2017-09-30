@@ -6,7 +6,20 @@
     android:layout_height="match_parent"
     android:clipChildren="false">
 
-    <FrameLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp" />
+
+   <!-- <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +31,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
-        <!--主頁-->
+        &lt;!&ndash;主頁&ndash;&gt;
         <RelativeLayout
             android:id="@+id/home_layout"
             android:layout_width="0dp"
@@ -43,7 +56,7 @@
                 android:text="主页" />
 
         </RelativeLayout>
-        <!--科普-->
+        &lt;!&ndash;科普&ndash;&gt;
         <RelativeLayout
             android:id="@+id/science_layout"
             android:layout_width="0dp"
@@ -67,7 +80,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="科普" />
         </RelativeLayout>
-        <!--中间交易-->
+        &lt;!&ndash;中间交易&ndash;&gt;
         <FrameLayout
             android:id="@+id/business_layout"
             android:layout_width="0dp"
@@ -94,7 +107,7 @@
                 android:layout_marginTop="@dimen/mp_5"
                 android:text="交易" />
         </FrameLayout>
-        <!--消息-->
+        &lt;!&ndash;消息&ndash;&gt;
         <RelativeLayout
             android:id="@+id/news_layout"
             android:layout_width="0dp"
@@ -118,7 +131,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="消息" />
         </RelativeLayout>
-        <!--个人-->
+        &lt;!&ndash;个人&ndash;&gt;
         <RelativeLayout
             android:id="@+id/personal_layout"
             android:layout_width="0dp"
@@ -142,6 +155,7 @@
                 android:layout_centerHorizontal="true"
                 android:text="个人" />
         </RelativeLayout>
-    </LinearLayout>
+
+    </LinearLayout>-->
 
 </RelativeLayout>

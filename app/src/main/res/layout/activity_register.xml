@@ -20,6 +20,7 @@
         style="@style/LoginEditStyle"
         android:id="@+id/passWord_edit"
         android:layout_marginTop="@dimen/mp_10"
+        android:password="true"
         android:drawableLeft="@drawable/password_editleft_selector"
         android:hint="请输入密码"
         />
@@ -51,6 +52,7 @@
             />
 
         <TextView
+            android:layout_marginLeft="@dimen/mp_10"
             android:id="@+id/verifyCode_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

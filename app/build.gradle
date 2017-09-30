@@ -51,7 +51,6 @@ dependencies {
     //没有使用特殊Header，可以不加这行
     compile files('libs/jxl.jar')
     compile name: 'SMSSDK-3.0.0', ext: 'aar'
-
     compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
 
     compile files('libs/MobTools-2017.0607.1736.jar')
@@ -74,4 +73,5 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
     compile 'com.android.support:design:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
+    compile 'com.ms-square:expandableTextView:0.1.4'
 }

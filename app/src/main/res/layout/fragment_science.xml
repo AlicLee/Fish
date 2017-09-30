@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
@@ -23,7 +23,7 @@
             android:layout_height="@dimen/mp_1"
             android:layout_alignParentBottom="true"
             android:background="@color/black" />
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <RadioGroup
         android:id="@+id/science_radiogroup"
@@ -42,7 +42,7 @@
             android:button="@null"
             android:gravity="center|center_horizontal"
             android:text="淡水鱼"
-             android:textColor="@drawable/science_radiotxt_selector"
+            android:textColor="@drawable/science_radiotxt_selector"
             android:textSize="@dimen/f_20" />
 
         <RadioButton
@@ -61,8 +61,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/science_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/mp_15">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/mp_15" />
 </LinearLayout>

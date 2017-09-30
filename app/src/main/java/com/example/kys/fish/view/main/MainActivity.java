@@ -1,42 +1,42 @@
 package com.example.kys.fish.view.main;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
+import com.example.kys.fish.adapter.MainTabAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 
 /**
  * Created by Lee on 2017/9/9.
  */
 
 public class MainActivity extends BaseActivity {
-    @InjectView(R.id.fragment_content)
-    FrameLayout fragmentContent;
     Fragment mFragment;
     HomeFragment mHomeFragment;
     ScienceFragment mScienceFragment;
     NewsFragment mNewsFragment;
     BusinessFragment mBusinessFragment;
     PersonFragment mPersonFragment;
-    @InjectView(R.id.home_img)
+    /*@InjectView(R.id.home_img)
     ImageView homeImg;
+    @InjectView(R.id.fragment_content)
+    FrameLayout fragmentContent;
     @InjectView(R.id.home_txt)
     TextView homeTxt;
     @InjectView(R.id.home_layout)
@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity {
     @InjectView(R.id.personal_txt)
     TextView personalTxt;
     @InjectView(R.id.personal_layout)
-    RelativeLayout personalLayout;
+    RelativeLayout personalLayout;*/
     FragmentManager mFragmentManager;
     Fragment[] mFragments;
     TextView[] mTextViews;
@@ -72,8 +72,14 @@ public class MainActivity extends BaseActivity {
     int[] mNormalDrawables = new int[]{R.mipmap.home_gray, R.mipmap.science_gray, R.mipmap.business_gray, R.mipmap.news_gray, R.mipmap.personal_gray};
     int[] mClickedDrawables = new int[]{R.mipmap.home_blue, R.mipmap.science_blue, R.mipmap.business_blue, R.mipmap.news_blue, R.mipmap.personal_blue};
     int SelectTabIndex = 0;//选中那个fragment
+    @InjectView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @InjectView(R.id.viewPager)
+    ViewPager viewPager;
     //退出时的时间
     private long mExitTime;
+    private List<Fragment> fragmentList;
+    private List<String> titleList;
 
     @Override
 
@@ -88,25 +94,43 @@ public class MainActivity extends BaseActivity {
      * 初始化视图
      */
     private void initView() {
-        mFragmentManager = getFragmentManager();
+        mFragmentManager = getSupportFragmentManager();
         mHomeFragment = new HomeFragment();
         mScienceFragment = new ScienceFragment();
         mBusinessFragment = new BusinessFragment();
         mNewsFragment = new NewsFragment();
         mPersonFragment = new PersonFragment();
+        fragmentList = new ArrayList<Fragment>() {{
+            add(mHomeFragment);
+            add(mScienceFragment);
+            add(mBusinessFragment);
+            add(mNewsFragment);
+            add(mPersonFragment);
+        }};
+        titleList = new ArrayList<String>() {{
+            add("主页");
+            add("科普");
+            add("交易");
+            add("消息");
+            add("个人");
+        }};
         mFragments = new Fragment[]{mHomeFragment, mScienceFragment, mBusinessFragment, mNewsFragment, mPersonFragment};
-        mTextViews = new TextView[]{homeTxt, scienceTxt, businessTxt, newsTxt, personalTxt};
-        mImageViews = new ImageView[]{homeImg, scienceImg, businessImg, newsImg, personalImg};
-        setSelectTab(0);
+        MainTabAdapter adapter = new MainTabAdapter(getSupportFragmentManager(), fragmentList, titleList);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager, true);
+        tabLayout.setTabsFromPagerAdapter(adapter);
+// mTextViews = new TextView[]{homeTxt, scienceTxt, businessTxt, newsTxt, personalTxt};
+//        mImageViews = new ImageView[]{homeImg, scienceImg, businessImg, newsImg, personalImg};
+//        setSelectTab(0);
     }
 
-    /**
+   /* *//**
      * 切换fragment
      *
      * @param i 第几个fragment
-     */
+     *//*
     private void setSelectTab(int i) {
-        FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+        android.support.v4.app.FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
         if (mFragments[i].isAdded()) {
             mFragmentTransaction.show(mFragments[i]);
             if (SelectTabIndex != i)
@@ -121,11 +145,11 @@ public class MainActivity extends BaseActivity {
         mFragmentTransaction.commit();
     }
 
-    /**
+    *//**
      * 切换fragment视图
      *
      * @param i 第几个fragment
-     */
+     *//*
     private void setTabView(int i) {
         //设置选中
         mImageViews[i].setImageResource(mClickedDrawables[i]);
@@ -158,7 +182,7 @@ public class MainActivity extends BaseActivity {
                 setSelectTab(4);
                 break;
         }
-    }
+    }*/
 
     /**
      * 返回键监听

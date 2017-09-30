@@ -12,8 +12,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.kys.fish.R;
 import com.example.kys.fish.customwidget.CommentListTextView;
+import com.example.kys.fish.model.Comment;
 import com.example.kys.fish.model.Home;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +39,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
             homeImage = (ImageView) view.findViewById(R.id.home_adapter_img);
             homeContent = (TextView) view.findViewById(R.id.home_content);
             comment_List = (CommentListTextView) view.findViewById(R.id.comment_list);
+            List<Comment> commentList = new ArrayList<>();
+            commentList.add(new Comment().setId(1111).setCommentContent("今天天气真好啊！11").setReceiversName("张三").setSendName("赵四"));
+            commentList.add(new Comment().setId(1112).setCommentContent("今天天气真好啊！12").setReceiversName("王五").setSendName("孙六"));
+            comment_List.setData(commentList);
         }
     }
 

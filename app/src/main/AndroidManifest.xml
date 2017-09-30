@@ -45,6 +45,7 @@
         <activity android:name=".view.main.MainActivity" />
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.login.RegisterActivity"></activity>
+        <activity android:name=".view.science.ScienceDetailActivity" />
     </application>
 
 </manifest>

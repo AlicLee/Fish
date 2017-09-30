@@ -1,8 +1,8 @@
 package com.example.kys.fish.view.main;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -60,11 +60,11 @@ public class HomeFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.inject(this, mView);
         initHomes();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());//getActivity().getApplicationContext()解决了兼容性问题，进行强制转换
         homeListView.setLayoutManager(layoutManager);
         adapter = new HomeAdapter(homeList);
         homeListView.setAdapter(adapter);
-//        initComment();
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {

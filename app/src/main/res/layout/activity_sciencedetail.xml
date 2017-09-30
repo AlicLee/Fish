@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/sciencedetail_leftback"
+            android:layout_width="@dimen/mp_32"
+            android:layout_height="@dimen/mp_32"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mp_8"
+            android:background="@mipmap/sciencedetail_leftback_blue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="科普详情"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/f_20" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/blue" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/mp_8"
+            android:paddingRight="@dimen/mp_8"
+            android:paddingTop="@dimen/mp_8">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/name_title"
+                    style="@style/ScienceDetailTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="名字:" />
+
+                <TextView
+                    android:id="@+id/name_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/name_title"
+                    android:layout_alignTop="@id/name_title"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/type_title"
+                    style="@style/ScienceDetailTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="类型:" />
+
+                <TextView
+                    android:id="@+id/type_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/type_title"
+                    android:textSize="18sp"
+                    android:layout_alignTop="@+id/type_title" />
+
+                <ImageView
+                    android:id="@+id/fishImg"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/brief_title"
+                style="@style/ScienceDetailTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8"
+                android:text="简介" />
+
+            <com.example.kys.fish.customwidget.ExpandableTextView
+                android:id="@+id/brief_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8" />
+
+            <TextView
+                android:id="@+id/breadingPoint_title"
+                style="@style/ScienceDetailTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8"
+                android:text="喂养要点" />
+
+            <com.example.kys.fish.customwidget.ExpandableTextView
+                android:id="@+id/breadingPoint_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/dieaseControl_title"
+                style="@style/ScienceDetailTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8"
+                android:text="疾病预防" />
+
+
+            <com.example.kys.fish.customwidget.ExpandableTextView
+                android:id="@+id/dieaseControl_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

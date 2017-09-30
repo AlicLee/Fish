@@ -1,16 +1,18 @@
 package com.example.kys.fish.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Lee on 2017/9/11.
  */
 
-public class ScienceData {
+public class ScienceData implements Serializable{
     String brief;//简介
-    String fishImgpath;
-    String breedingPoint;//养殖要点
+    String breadingPoint;//养殖要点
     String dieaseControl;//病害防止
     String name;//名称
     String type;//类型
+    String kind;//种类(判断是否是淡水鱼还是海水鱼)
 
     public String getName() {
         return name;
@@ -28,20 +30,13 @@ public class ScienceData {
         this.brief = brief;
     }
 
-    public String getFishImgpath() {
-        return fishImgpath;
+
+    public String getBreadingPoint() {
+        return breadingPoint;
     }
 
-    public void setFishImgpath(String fishImgpath) {
-        this.fishImgpath = fishImgpath;
-    }
-
-    public String getBreedingPoint() {
-        return breedingPoint;
-    }
-
-    public void setBreedingPoint(String breedingPoint) {
-        this.breedingPoint = breedingPoint;
+    public void setBreadingPoint(String breadingPoint) {
+        this.breadingPoint = breadingPoint;
     }
 
     public String getDieaseControl() {
@@ -58,5 +53,13 @@ public class ScienceData {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 }

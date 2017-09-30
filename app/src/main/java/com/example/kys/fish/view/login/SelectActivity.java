@@ -2,12 +2,18 @@ package com.example.kys.fish.view.login;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursorDriver;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQuery;
+import android.database.sqlite.SQLiteStatement;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -16,6 +22,7 @@ import android.widget.RelativeLayout;
 
 import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
+import com.example.kys.fish.database.ScienceDBHelper;
 import com.example.kys.fish.util.DensityUtil;
 
 import java.io.InputStream;
@@ -106,7 +113,7 @@ public class SelectActivity extends BaseActivity {
         preference = this.getSharedPreferences("Fish", MODE_PRIVATE);
         boolean isFirst = preference.getBoolean("isFirstRun", true);
         if (isFirst) {
-//            readExcelToDataBase();
+            readExcelToDataBase();
         }
         SharedPreferences.Editor editor = this.getSharedPreferences("Fish", MODE_PRIVATE).edit();
         editor.putBoolean("isFirstRun", false);
@@ -116,7 +123,7 @@ public class SelectActivity extends BaseActivity {
 
     private void readExcelToDataBase() {
         // 1、构造excel文件输入流对象
-        InputStream is = getResources().openRawResource(R.raw.xx);
+        InputStream is = getResources().openRawResource(R.raw.science);
         // 2、声明工作簿对象
         Workbook rwb = null;
         try {
@@ -127,15 +134,34 @@ public class SelectActivity extends BaseActivity {
         // 3、获得工作簿的个数,对应于一个excel中的工作表个数
         rwb.getNumberOfSheets();
         Sheet oFirstSheet = rwb.getSheet(0);// 使用索引形式获取第一个工作表，也可以使用rwb.getSheet(sheetName);其中sheetName表示的是工作表的名称
-//        System.out.println("工作表名称：" + oFirstSheet.getName());
         int rows = oFirstSheet.getRows();//获取工作表中的总行数
         int columns = oFirstSheet.getColumns();//获取工作表中的总列数
-        for (int i = 0; i < rows; i++) {
+        ScienceDBHelper dbHelper = new ScienceDBHelper(this, "science.db", new SQLiteDatabase.CursorFactory() {
+            @Override
+            public Cursor newCursor(SQLiteDatabase sqLiteDatabase, SQLiteCursorDriver sqLiteCursorDriver, String s, SQLiteQuery sqLiteQuery) {
+                return null;
+            }
+        }, 1);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String sql = "insert into science(kind,name,type,breadingPoint,dieaseControl,brief) values(?,?,?,?,?,?)";
+        SQLiteStatement stat = db.compileStatement(sql);
+        db.beginTransaction();
+        for (int i = 1; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 Cell oCell = oFirstSheet.getCell(j, i);//需要注意的是这里的getCell方法的参数，第一个是指定第几列，第二个参数才是指定第几行
-                System.out.println(oCell.getContents() + "\r\n");
+                stat.bindString(1, oFirstSheet.getCell(0, i).getContents());
+                stat.bindString(2, oFirstSheet.getCell(1, i).getContents());
+                stat.bindString(3, oFirstSheet.getCell(2, i).getContents());
+                stat.bindString(4, oFirstSheet.getCell(3, i).getContents());
+                stat.bindString(5, oFirstSheet.getCell(4, i).getContents());
+                stat.bindString(6, oFirstSheet.getCell(5, i).getContents());
+                Log.e("SelectActivity", oCell.getContents());
             }
+            stat.executeInsert();
         }
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        db.close();
 //        ScienceDBHelper dbHelper=new ScienceDBHelper(this,);
     }
 

@@ -19,14 +19,14 @@ public class ScienceDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String sql = "CREATE TABLE `science` (\n" +
-                "  `id` int(11) NOT NULL,\n" +
-                "  `brief` text COMMENT '简介',\n" +
-                "  `fishImgpath` varchar(255) DEFAULT NULL COMMENT '鱼的图片路径',\n" +
-                "  `breadingPoint` text COMMENT '养殖要点',\n" +
-                "  `dieaseControl` text COMMENT '病害防治',\n" +
-                "  `name` varchar(255) NOT NULL COMMENT '名称',\n" +
-                "  `type` varchar(255) DEFAULT NULL COMMENT '类型',\n" +
-                "  PRIMARY KEY (`id`)\n" +
+                "  `id` Integer PRIMARY KEY AUTOINCREMENT,\n" +
+                "  `brief` text,\n" +
+                "`kind` varchar(255) DEFAULT NULL,\n" +
+
+                "  `breadingPoint` text ,\n" +
+                "  `dieaseControl` text ,\n" +
+                "  `name` varchar(255) NOT NULL ,\n" +
+                "  `type` varchar(255) DEFAULT NULL \n" +
                 ") ";
         sqLiteDatabase.execSQL(sql);
     }
