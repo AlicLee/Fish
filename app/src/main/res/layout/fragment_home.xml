@@ -16,16 +16,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways|snap"
-                >
+                android:weightSum="1">
                 <LinearLayout
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:background="@drawable/style"
                     android:orientation="horizontal"
-                    android:paddingRight="@dimen/mp_15"
-                    android:layout_marginLeft="@dimen/mp_40"
-                    android:layout_marginTop="@dimen/mp_10"
-                    android:layout_marginBottom="@dimen/mp_10">
+                    android:layout_marginLeft="@dimen/mp_1"
+                    android:layout_marginTop="@dimen/mp_10">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -56,6 +54,11 @@
                     android:padding="@dimen/mp_10"
                     android:src="@mipmap/delete" />
                 </LinearLayout>
+                <ImageView
+                    android:id="@+id/add_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/add" />
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
@@ -69,16 +72,30 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 >
-                <!--<ListView-->
-                    <!--android:id="@+id/comment_listView"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent">-->
 
-                <!--</ListView>-->
             </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="当前用户id:1,昵称：走向远方"
+                android:background="#ffffff"
+                android:textColor="#aaaaaa"
+                android:padding="10dp"
+                android:id="@+id/title"
+                android:paddingTop="200dp"
+                />
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:id="@+id/list_moment"
+                android:dividerHeight="10dp"
+                android:divider="#ececec"
+                android:cacheColorHint="@android:color/transparent"
+                />
+
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
-    </android.support.design.widget.CoordinatorLayout>
 
+    </android.support.design.widget.CoordinatorLayout>
 </android.support.v4.widget.DrawerLayout>
