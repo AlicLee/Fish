@@ -1,8 +1,10 @@
 package com.example.kys.fish.view.science;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -67,6 +69,14 @@ public class ScienceDetailActivity extends BaseActivity {
         briefContent.setText("\u3000\u3000\u3000" + mScienceData.getBrief());
         breadingPointContent.setText("\u3000\u3000\u3000" + mScienceData.getBreadingPoint());
         Glide.with(this).load(Uri.parse("file:///android_asset/") + mScienceData.getName().trim() + ".jpg").into(fishImg);
+        fishImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ScienceDetailActivity.this, ScienceImgDetailActivity.class);
+                intent.putExtra("imageName",mScienceData.getName().trim() + ".jpg");
+                startActivity(intent);
+            }
+        });
     }
 
     @OnClick(R.id.sciencedetail_leftback)

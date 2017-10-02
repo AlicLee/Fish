@@ -1,101 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    android:orientation="vertical">
-    <android.support.design.widget.CoordinatorLayout
+    android:background="@color/white">
+
+    <!-- <android.support.design.widget.CoordinatorLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+
+         <android.support.design.widget.AppBarLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+             <android.support.v7.widget.Toolbar
+                 android:id="@+id/toolbar"
+                 android:layout_width="match_parent"
+                 android:layout_height="?attr/actionBarSize"
+                 app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                 <LinearLayout
+                     android:layout_width="300dp"
+                     android:layout_height="40dp"
+                     android:layout_marginBottom="@dimen/mp_10"
+                     android:layout_marginLeft="@dimen/mp_40"
+                     android:layout_marginTop="@dimen/mp_10"
+                     android:background="@drawable/style"
+                     android:orientation="horizontal"
+                     android:paddingRight="@dimen/mp_15">
+
+                     <ImageView
+                         android:id="@+id/search_img"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_gravity="center_vertical"
+                         android:paddingLeft="@dimen/mp_20"
+                         android:src="@mipmap/search" />
+
+                     <EditText
+                         android:id="@+id/search_edit"
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:background="@null"
+                         android:drawablePadding="8dp"
+                         android:gravity="center_vertical"
+                         android:hint="输入查询的关键字"
+                         android:imeOptions="actionSearch"
+                         android:lines="1"
+                         android:paddingLeft="@dimen/mp_10"
+                         android:singleLine="true"
+                         android:textColor="@color/black"
+                         android:textSize="@dimen/f_16" />
+
+                     <ImageView
+                         android:id="@+id/delete_img"
+                         android:layout_width="50dp"
+                         android:layout_height="50dp"
+                         android:layout_gravity="center_vertical"
+                         android:padding="@dimen/mp_10"
+                         android:src="@mipmap/delete" />
+                 </LinearLayout>
+             </android.support.v7.widget.Toolbar>
+         </android.support.design.widget.AppBarLayout>-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addComment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/mp_50"
+        android:layout_marginEnd="@dimen/mp_50"
+        android:layout_marginRight="@dimen/mp_50" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_scrollFlags="scroll|enterAlways|snap"
-                android:weightSum="1">
-                <LinearLayout
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/style"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="@dimen/mp_1"
-                    android:layout_marginTop="@dimen/mp_10">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/search"
-                    android:layout_gravity="center_vertical"
-                    android:id="@+id/search_img"
-                    android:paddingLeft="@dimen/mp_20"/>
-                <EditText
-                    android:id="@+id/search_edit"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:drawablePadding="8dp"
-                    android:paddingLeft="@dimen/mp_10"
-                    android:gravity="center_vertical"
-                    android:hint="输入查询的关键字"
-                    android:imeOptions="actionSearch"
-                    android:singleLine="true"
-                    android:lines="1"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/f_16" />
-                <ImageView
-                    android:id="@+id/delete_img"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:padding="@dimen/mp_10"
-                    android:src="@mipmap/delete" />
-                </LinearLayout>
-                <ImageView
-                    android:id="@+id/add_img"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@mipmap/add" />
-            </android.support.v7.widget.Toolbar>
-        </android.support.design.widget.AppBarLayout>
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/home_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                >
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <!--<ListView-->
+                <!--android:id="@+id/comment_listView"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent">-->
 
+                <!--</ListView>-->
             </android.support.v7.widget.RecyclerView>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="当前用户id:1,昵称：走向远方"
-                android:background="#ffffff"
-                android:textColor="#aaaaaa"
-                android:padding="10dp"
-                android:id="@+id/title"
-                android:paddingTop="200dp"
-                />
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="380dp"
-                android:id="@+id/list_moment"
-                android:dividerHeight="10dp"
-                android:divider="#ececec"
-                android:cacheColorHint="@android:color/transparent"
-                />
-
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </LinearLayout>
+    <!--</android.support.design.widget.CoordinatorLayout>-->
 
-
-
-    </android.support.design.widget.CoordinatorLayout>
-</android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

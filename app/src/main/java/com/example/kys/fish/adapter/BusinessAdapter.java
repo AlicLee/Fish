@@ -35,7 +35,12 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.viewHo
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
-
+        holder.logo.setImageResource(R.mipmap.ic_launcher);
+        holder.title.setText(businessDataList.get(position).getTitle());
+        holder.selled.setText(businessDataList.get(position).getSelled());
+        holder.ratingText.setText(businessDataList.get(position).getRating());
+        holder.brief.setText(businessDataList.get(position).getBrief());
+        holder.ratingbar.setRating(Float.valueOf(businessDataList.get(position).getRating()));
     }
 
 
@@ -59,4 +64,5 @@ public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.viewHo
             brief = (TextView) itemView.findViewById(R.id.business_brief);
         }
     }
+
 }

@@ -10,6 +10,7 @@
         android:layout_width="110dp"
         android:layout_height="100dp"
         android:layout_gravity="left"
+        android:clickable="true"
         android:layout_marginLeft="@dimen/mp_8"
         android:layout_marginTop="@dimen/mp_8" />
 

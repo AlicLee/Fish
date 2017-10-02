@@ -10,9 +10,11 @@
     <dimen name="wh_0">0dp</dimen>
     <dimen name="mp_1">1dp</dimen>
     <dimen name="mp_2">2dp</dimen>
+    <dimen name="mp_4">4dp</dimen>
     <dimen name="mp_5">5dp</dimen>
     <dimen name="mp_8">8dp</dimen>
     <dimen name="mp_10">10dp</dimen>
+    <dimen name="mp_12">12dp</dimen>
     <dimen name="mp_15">15dp</dimen>
     <dimen name="mp_16">16dp</dimen>
     <dimen name="mp_20">20dp</dimen>

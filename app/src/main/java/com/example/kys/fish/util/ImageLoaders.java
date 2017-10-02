@@ -39,9 +39,7 @@ public class ImageLoaders {
      */
     private DiskLruCache mDiskLruCache;
     /**
-     *  
-     *      * 记录所有正在下载或等待下载的任务。 
-     *      
+     * 记录所有正在下载或等待下载的任务。 
      */
     private Set<BitmapWokerTask> taskCollection;
     /**
@@ -53,6 +51,7 @@ public class ImageLoaders {
 
     /**
      * 构造方法
+     *
      * @param context
      */
     public ImageLoaders(Context context) {

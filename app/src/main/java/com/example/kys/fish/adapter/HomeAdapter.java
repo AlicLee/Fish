@@ -9,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.kys.fish.R;
 import com.example.kys.fish.customwidget.CommentListTextView;
 import com.example.kys.fish.model.Comment;
-import com.example.kys.fish.model.Home;
+import com.example.kys.fish.model.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private Context context;
-    private List<Home> mHomeList;
+    private List<Session> mSessionList;
 
     //定一个了一个内部类ViewHolder
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -46,8 +45,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         }
     }
 
-    public HomeAdapter(List<Home> homeList) {
-        mHomeList = homeList;
+    public HomeAdapter(List<Session> sessionList) {
+        mSessionList = sessionList;
     }
 
     /**继承RecyclerView.Adapter，必须重写以下三个方法*/
@@ -70,10 +69,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Home home = mHomeList.get(position);
-        holder.homeContent.setText(home.getContent());
+        Session session = mSessionList.get(position);
+//        holder.homeContent.setText(home.getContent());
         //使用glide来加载图片
-        Glide.with(context).load(home.getImageId()).into(holder.homeImage);
+//        Glide.with(context).load(home.getImageId()).into(holder.homeImage);
     }
 
     /**
@@ -81,7 +80,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
      */
     @Override
     public int getItemCount() {
-        return mHomeList.size();
+        return mSessionList.size();
     }
 }
 
