@@ -44,8 +44,10 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".view.main.MainActivity" />
         <activity android:name=".view.login.LoginActivity" />
-        <activity android:name=".view.login.RegisterActivity"></activity>
+        <activity android:name=".view.login.RegisterActivity" />
         <activity android:name=".view.science.ScienceDetailActivity" />
+        <activity android:name=".view.science.ScienceImgDetailActivity" />
+        <activity android:name=".view.home.AddCommentActivity" />
     </application>
 
 </manifest>

@@ -9,4 +9,5 @@ public class AppConfig {
     public static int SUCCESS_CODE = 1;
     public static int FAILURE_CODE = 0;
     public static int TOKEN_EXPRIED = 40001;
+    public static int CACHE_MAXSIZE=1024*1024*10;
 }

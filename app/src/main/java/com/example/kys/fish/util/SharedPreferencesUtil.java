@@ -9,11 +9,15 @@ import android.content.SharedPreferences;
 
 public class SharedPreferencesUtil {
     private Context mContext;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
     public SharedPreferencesUtil(Context context) {
+        new SharedPreferencesUtil(context, "Fish");
+    }
+
+    public SharedPreferencesUtil(Context context, String Name) {
         this.mContext = context;
-        this.sharedPreferences = mContext.getSharedPreferences("Fish", Context.MODE_PRIVATE);
+        this.sharedPreferences = mContext.getSharedPreferences(Name, Context.MODE_PRIVATE);
     }
 
     public void saveObject(String saveName, String saveValue) {
