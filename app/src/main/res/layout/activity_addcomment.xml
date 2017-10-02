@@ -75,5 +75,17 @@
             app:layoutManager="android.support.v7.widget.GridLayoutManager"
             app:spanCount="4"
             tools:listitem="@layout/adapter_comment_image" />
+        <TextView
+            android:id="@+id/delete_img_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/holo_red_light"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:text="拖动到此处删除"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            />
     </RelativeLayout>
 </LinearLayout>

@@ -14,4 +14,6 @@
     <color name="transparent40">#40000000</color>
     <color name="transparent">#00000000</color>
     <color name="gray_font_dark">#646464</color>
+    <color name="holo_red_light">#ffff4444</color>
+    <color name="holo_red_dark">#ffcc0000</color>
 </resources>

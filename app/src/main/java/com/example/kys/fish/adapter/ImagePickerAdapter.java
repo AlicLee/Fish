@@ -8,14 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.example.kys.fish.R;
+import com.example.kys.fish.presenter.RecyclerItemDeleteListener;
 import com.example.kys.fish.view.home.AddCommentActivity;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ import java.util.List;
  * 修订历史：微信图片选择的Adapter, 感谢 ikkong 的提交
  * ================================================
  */
-public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.SelectedPicViewHolder> {
+public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.SelectedPicViewHolder>implements RecyclerItemDeleteListener.ItemTouchAdapter {
     private int maxImgCount;
     private Context mContext;
     private List<ImageItem> mData;
@@ -35,6 +36,29 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
     private OnRecyclerViewItemClickListener listener;
     private boolean isAdded;   //是否额外添加了最后一个图片
     private RecyclerView.LayoutManager manager;
+
+    @Override
+    public void onMove(int fromPosition, int toPosition) {
+        if (fromPosition==mData.size()-1 || toPosition==mData.size()-1){
+            return;
+        }
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mData, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mData, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onSwiped(int position) {
+        mData.remove(position);
+        notifyItemRemoved(position);
+    }
 
     public interface OnRecyclerViewItemClickListener {
         void onItemClick(View view, int position);
@@ -86,13 +110,12 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
 
     public class SelectedPicViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView iv_img, img_delete;
+        private ImageView iv_img;
         private int clickPosition;
 
         public SelectedPicViewHolder(View itemView) {
             super(itemView);
             iv_img = (ImageView) itemView.findViewById(R.id.iv_img);
-            img_delete = (ImageView) itemView.findViewById(R.id.comment_img_delete);
         }
 
         public void bind(SelectedPicViewHolder holder, final int position) {
@@ -103,37 +126,8 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
             if (isAdded && position == getItemCount() - 1) {
                 iv_img.setImageResource(R.drawable.selector_image_add);
                 clickPosition = AddCommentActivity.IMAGE_ITEM_ADD;
-                holder.img_delete.setVisibility(View.INVISIBLE);
             } else {
                 ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
-                holder.img_delete.setVisibility(View.VISIBLE);
-                holder.img_delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (mData.size() == maxImgCount && position == getItemCount() - 1) {
-                            View itemView = manager.findViewByPosition(getItemCount() - 1);    //2为recyclerView中item位置，
-                            //mLayoutManager为recyclre的布局管理器
-                            RelativeLayout layout = (RelativeLayout) itemView;//获取布局中任意控件对象
-                            ImageView item_img = (ImageView) layout.findViewById(R.id.iv_img);
-                            item_img.setImageResource(R.drawable.selector_image_add);
-                            notifyDataSetChanged();
-                            clickPosition = AddCommentActivity.IMAGE_ITEM_ADD;
-                        } else if (mData.size() < maxImgCount) {
-                            mData.remove(position);
-                            ImagePickerAdapter.this.notifyDataSetChanged();
-                        } else if (mData.size() == maxImgCount && position != getItemCount() - 1) {
-                            View itemView = manager.findViewByPosition(getItemCount() - 1);    //2为recyclerView中item位置，
-                            //mLayoutManager为recyclre的布局管理器
-                            RelativeLayout layout = (RelativeLayout) itemView;//获取布局中任意控件对象
-                            ImageView item_img = (ImageView) layout.findViewById(R.id.iv_img);
-                            item_img.setImageResource(R.drawable.selector_image_add);
-                            notifyDataSetChanged();
-                            clickPosition = AddCommentActivity.IMAGE_ITEM_ADD;
-                            mData.remove(position);
-                            ImagePickerAdapter.this.notifyDataSetChanged();
-                        }
-                    }
-                });
                 clickPosition = position;
             }
         }
@@ -143,4 +137,5 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
             if (listener != null) listener.onItemClick(v, clickPosition);
         }
     }
+
 }

@@ -1,10 +1,14 @@
 package com.example.kys.fish.view.home;
 
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -15,6 +19,8 @@ import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
 import com.example.kys.fish.adapter.ImagePickerAdapter;
 import com.example.kys.fish.customwidget.SelectDialog;
+import com.example.kys.fish.presenter.OnRecyclerItemClickListener;
+import com.example.kys.fish.presenter.RecyclerItemDeleteListener;
 import com.example.kys.fish.util.GlideImageLoader;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -33,7 +39,7 @@ import butterknife.OnClick;
  * Created by Lee on 2017/10/1.
  */
 
-public class AddCommentActivity extends BaseActivity implements ImagePickerAdapter.OnRecyclerViewItemClickListener {
+public class AddCommentActivity extends BaseActivity implements ImagePickerAdapter.OnRecyclerViewItemClickListener, RecyclerItemDeleteListener.OnDragListener {
     @InjectView(R.id.comment_leftback)
     ImageView commentLeftback;
     @InjectView(R.id.comment_input_edit)
@@ -42,13 +48,15 @@ public class AddCommentActivity extends BaseActivity implements ImagePickerAdapt
     TextView publishComment;
     @InjectView(R.id.recyclerView)
     RecyclerView recyclerView;
-
+    @InjectView(R.id.delete_img_tv)
+    TextView deleteImgTv;
     private ImagePickerAdapter adapter;
     private ArrayList<ImageItem> selImageList; //当前选择的所有图片
     private int maxImgCount = 8;               //允许选择图片最大数
     public static final int IMAGE_ITEM_ADD = -1;
     public static final int REQUEST_CODE_SELECT = 100;
     public static final int REQUEST_CODE_PREVIEW = 101;
+    ItemTouchHelper itemTouchHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,10 +85,27 @@ public class AddCommentActivity extends BaseActivity implements ImagePickerAdapt
         selImageList = new ArrayList<>();
         GridLayoutManager manager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(manager);
-        adapter = new ImagePickerAdapter(this, selImageList, maxImgCount,manager);
+        adapter = new ImagePickerAdapter(this, selImageList, maxImgCount, manager);
         adapter.setOnItemClickListener(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+        itemTouchHelper = new ItemTouchHelper(new RecyclerItemDeleteListener(this,adapter).setOnDragListener(this));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+        recyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(recyclerView){
+            @Override
+            public void onLongClick(RecyclerView.ViewHolder vh) {
+                if (vh.getLayoutPosition()!=selImageList.size()-1) {
+                    itemTouchHelper.startDrag(vh);
+                    Vibrator vib = (Vibrator) AddCommentActivity.this.getSystemService(Service.VIBRATOR_SERVICE);
+                    vib.vibrate(40);
+                }
+            }
+//            @Override
+//            public void onItemClick(RecyclerView.ViewHolder vh) {
+//                TImage item = results.get(vh.getLayoutPosition());
+//                Toast.makeText(ShellActivity.this,item.getCompressPath()+" "+item.getOriginalPath(),Toast.LENGTH_SHORT).show();
+//            }
+        });
     }
 
     @OnClick({R.id.comment_leftback, R.id.publish_comment})
@@ -182,4 +207,41 @@ public class AddCommentActivity extends BaseActivity implements ImagePickerAdapt
         }
     }
 
+    @Override
+    public void onFinishDrag() {
+
+    }
+
+    @Override
+    public void deleteState(boolean delete) {
+        if (delete) {
+            deleteImgTv.setBackgroundResource(R.color.holo_red_dark);
+            deleteImgTv.setText("放开手指,进行删除");
+        } else {
+            deleteImgTv.setText("拖动此处进行删除");
+            deleteImgTv.setBackgroundResource(R.color.holo_red_light);
+        }
+    }
+
+    @Override
+    public void dragState(boolean start) {
+        if (start) {
+            deleteImgTv.setVisibility(View.VISIBLE);
+        } else {
+            deleteImgTv.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void isDelete(int position) {
+        Log.e("tag","确认删除："+position);
+        if (position>=0){
+            selImageList.remove(position);
+            adapter.notifyItemRemoved(position);
+            //刷新list 解决不能去掉阴影的bug
+//            recyclerView.setAdapter(adapter);
+//            itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        }
+    }
 }
