@@ -18,12 +18,14 @@ import com.example.kys.fish.util.DensityUtil;
  * Created by kys on 2017/10/2.
  */
 
-public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback{
+public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback {
     private ImagePickerAdapter itemTouchAdapter;
     private boolean up;//手指抬起标记位
     private Context mContext;
-    public RecyclerItemDeleteListener(Context context,ImagePickerAdapter itemTouchAdapter){
-        this.mContext=context;
+    int position;
+    public static int deletePosition;
+    public RecyclerItemDeleteListener(Context context, ImagePickerAdapter itemTouchAdapter) {
+        this.mContext = context;
         this.itemTouchAdapter = itemTouchAdapter;
     }
 
@@ -55,7 +57,8 @@ public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback{
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         int fromPosition = viewHolder.getAdapterPosition();//得到拖动ViewHolder的position
         int toPosition = target.getAdapterPosition();//得到目标ViewHolder的position
-        itemTouchAdapter.onMove(fromPosition,toPosition);
+        itemTouchAdapter.onMove(fromPosition, toPosition);
+        position = fromPosition;
         return true;
     }
 
@@ -64,6 +67,7 @@ public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback{
         int position = viewHolder.getAdapterPosition();
         itemTouchAdapter.onSwiped(position);
     }
+
     /**
      * 重置
      */
@@ -77,19 +81,18 @@ public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback{
 
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-
         if (null == onDragListener) {
-            Log.e("tag","null == onDragListener");
+            Log.e("tag", "null == onDragListener");
             return;
         }
-        int width = DensityUtil.initScreenWidth((Activity)mContext);
+        int width = DensityUtil.initScreenWidth((Activity) mContext);
         if (dY >= (width
                 - viewHolder.itemView.getBottom()//item底部距离recyclerView顶部高度
-                +70)) {//拖到删除处
+        )) {//拖到删除处
             onDragListener.deleteState(true);
             if (up) {//在删除处放手，则删除item
                 viewHolder.itemView.setVisibility(View.INVISIBLE);//先设置不可见，如果不设置的话，会看到viewHolder返回到原位置时才消失，因为remove会在viewHolder动画执行完成后才将viewHolder删除
-                onDragListener.isDelete(viewHolder.getAdapterPosition());
+                onDragListener.isDelete(deletePosition);
                 initData();
                 return;
             }
@@ -148,13 +151,11 @@ public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback{
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         super.clearView(recyclerView, viewHolder);
-
         viewHolder.itemView.setAlpha(1.0f);
         if (background != null) viewHolder.itemView.setBackgroundDrawable(background);
         if (bkcolor != -1) viewHolder.itemView.setBackgroundColor(bkcolor);
         //viewHolder.itemView.setBackgroundColor(0);
-
-        if (onDragListener!=null){
+        if (onDragListener != null) {
             onDragListener.onFinishDrag();
         }
         initData();
@@ -164,12 +165,15 @@ public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback{
     private int bkcolor = -1;
 
     private OnDragListener onDragListener;
+
     public RecyclerItemDeleteListener setOnDragListener(OnDragListener onDragListener) {
         this.onDragListener = onDragListener;
         return this;
     }
-    public interface OnDragListener{
+
+    public interface OnDragListener {
         void onFinishDrag();
+
         /**
          * 用户是否将 item拖动到删除处，根据状态改变颜色
          *
@@ -186,12 +190,15 @@ public class RecyclerItemDeleteListener extends ItemTouchHelper.Callback{
 
         /**
          * 确定删除了
+         *
          * @param position
          */
         void isDelete(int position);
     }
+
     public interface ItemTouchAdapter {
         void onMove(int fromPosition, int toPosition);
+
         void onSwiped(int position);
     }
 }

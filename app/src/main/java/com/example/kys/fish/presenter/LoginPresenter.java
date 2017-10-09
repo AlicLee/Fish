@@ -7,9 +7,11 @@ import android.util.Log;
 import com.example.kys.fish.httpnetworks.ApiService;
 import com.example.kys.fish.httpnetworks.BaseSubscriber;
 import com.example.kys.fish.httpnetworks.HttpMethods;
+import com.example.kys.fish.model.Login;
 import com.example.kys.fish.presenter.impl.LoginImpl;
 import com.example.kys.fish.util.InterceptorUtils;
 import com.example.kys.fish.view.login.LoginActivity;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +21,8 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static com.example.kys.fish.config.AppConfig.login;
 
 /**
  * Created by Lee on 2017/9/6.
@@ -90,6 +94,7 @@ public class LoginPresenter implements LoginImpl.Presenter {
                             Log.e(TAG, "respone:" + jsonObject);
                             String Code = jsonObject.getString("Code");
                             if (Code.equals("1")) {
+                                login = new Gson().fromJson(jsonObject.toString(), Login.class);
                                 mLoginView.showLoginSuccess();
                             } else if (Code.equals("0")) {
                                 mLoginView.showLoginError();

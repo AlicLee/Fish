@@ -16,7 +16,7 @@ import com.example.kys.fish.adapter.HomeAdapter;
 import com.example.kys.fish.model.Comment;
 import com.example.kys.fish.model.Home;
 import com.example.kys.fish.model.Session;
-import com.example.kys.fish.view.home.AddCommentActivity;
+import com.example.kys.fish.view.home.AddSessionActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadmoreListener;
@@ -102,6 +102,6 @@ public class HomeFragment extends Fragment {
 
     @OnClick(R.id.addComment_btn)
     public void onViewClicked() {
-        startActivity(new Intent(getActivity(), AddCommentActivity.class));
+        startActivity(new Intent(getActivity(), AddSessionActivity.class));
     }
 }

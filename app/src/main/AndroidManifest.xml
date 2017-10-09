@@ -47,7 +47,7 @@
         <activity android:name=".view.login.RegisterActivity" />
         <activity android:name=".view.science.ScienceDetailActivity" />
         <activity android:name=".view.science.ScienceImgDetailActivity" />
-        <activity android:name=".view.home.AddCommentActivity" />
+        <activity android:name=".view.home.AddSessionActivity" />
     </application>
 
 </manifest>

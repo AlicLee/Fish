@@ -64,7 +64,7 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
             return;
         }
         loginPresenter.login(nickName, passWord);
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 
     @Override

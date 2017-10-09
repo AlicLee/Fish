@@ -1,15 +1,17 @@
 package com.example.kys.fish.httpnetworks;
 
 
-import com.example.kys.fish.model.Login;
-import com.example.kys.fish.model.WrapperRspEntity;
+import java.util.Map;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -20,18 +22,17 @@ import rx.Observable;
 public interface ApiService {
     public static final String BASE_URL = "http://172.18.74.9/";
 
-//    @FormUrlEncoded
+    //    @FormUrlEncoded
     @GET("{url}")
     Observable<ResponseBody> executeGet(@Path("url") String url);
 
     @POST("{url}")
     Observable<ResponseBody> executePost(@Path("url") String url, @Body RequestBody requestBody);
-    //Observers<ResponseBody>
-// @Multipart
-//    @POST("{url}")
-//    Observable<ResponseBody> upLoadFile(@Path("url") String url, @Part("image\\";filename =\\"image.jpg") RequestBody avatar);
-//
+
+    @Multipart
+    @POST("{url}")
+    Call<ResponseBody> upload(@Path("url") String url, @Part("data") RequestBody description,
+                              @PartMap() Map<String, RequestBody> maps);
 //    @POST("{url}")
 //    Call<ResponseBody> uploadFiles(@Url("url") String url, @Part("filename") String description, @PartMap() Map<String, RequestBody> maps);
-
 }

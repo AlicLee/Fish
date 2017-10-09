@@ -11,7 +11,7 @@ import android.widget.ImageView;
 
 import com.example.kys.fish.R;
 import com.example.kys.fish.presenter.RecyclerItemDeleteListener;
-import com.example.kys.fish.view.home.AddCommentActivity;
+import com.example.kys.fish.view.home.AddSessionActivity;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 
@@ -28,10 +28,10 @@ import java.util.List;
  * 修订历史：微信图片选择的Adapter, 感谢 ikkong 的提交
  * ================================================
  */
-public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.SelectedPicViewHolder>implements RecyclerItemDeleteListener.ItemTouchAdapter {
+public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.SelectedPicViewHolder> implements RecyclerItemDeleteListener.ItemTouchAdapter {
     private int maxImgCount;
     private Context mContext;
-    private List<ImageItem> mData;
+    public List<ImageItem> mData;
     private LayoutInflater mInflater;
     private OnRecyclerViewItemClickListener listener;
     private boolean isAdded;   //是否额外添加了最后一个图片
@@ -39,7 +39,7 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
 
     @Override
     public void onMove(int fromPosition, int toPosition) {
-        if (fromPosition==mData.size()-1 || toPosition==mData.size()-1){
+        if (isAdded && (fromPosition == mData.size() - 1 || toPosition == mData.size() - 1)) {
             return;
         }
         if (fromPosition < toPosition) {
@@ -108,8 +108,7 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
         return mData.size();
     }
 
-    public class SelectedPicViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+    public class SelectedPicViewHolder extends RecyclerView.ViewHolder {
         private ImageView iv_img;
         private int clickPosition;
 
@@ -120,22 +119,25 @@ public class ImagePickerAdapter extends RecyclerView.Adapter<ImagePickerAdapter.
 
         public void bind(SelectedPicViewHolder holder, final int position) {
             //设置条目的点击事件
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
             //根据条目位置设置图片
             ImageItem item = mData.get(position);
             if (isAdded && position == getItemCount() - 1) {
                 iv_img.setImageResource(R.drawable.selector_image_add);
-                clickPosition = AddCommentActivity.IMAGE_ITEM_ADD;
+                clickPosition = AddSessionActivity.IMAGE_ITEM_ADD;
             } else {
                 ImagePicker.getInstance().getImageLoader().displayImage((Activity) mContext, item.path, iv_img, 0, 0);
                 clickPosition = position;
             }
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        listener.onItemClick(view, clickPosition);
+                    }
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            if (listener != null) listener.onItemClick(v, clickPosition);
-        }
     }
-
 }
