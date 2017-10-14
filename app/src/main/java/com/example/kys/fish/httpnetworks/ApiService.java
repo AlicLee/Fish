@@ -1,8 +1,9 @@
 package com.example.kys.fish.httpnetworks;
 
 
-import java.util.Map;
+import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -11,7 +12,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 import rx.Observable;
 
@@ -20,7 +20,7 @@ import rx.Observable;
  */
 
 public interface ApiService {
-    public static final String BASE_URL = "http://172.18.74.9/";
+    public static final String BASE_URL = "http://172.18.74.9";
 
     //    @FormUrlEncoded
     @GET("{url}")
@@ -31,8 +31,8 @@ public interface ApiService {
 
     @Multipart
     @POST("{url}")
-    Call<ResponseBody> upload(@Path("url") String url, @Part("data") RequestBody description,
-                              @PartMap() Map<String, RequestBody> maps);
-//    @POST("{url}")
-//    Call<ResponseBody> uploadFiles(@Url("url") String url, @Part("filename") String description, @PartMap() Map<String, RequestBody> maps);
+    Call<ResponseBody> upload(@Path("url") String url,
+                              @Part("jsonData") RequestBody part,
+                              @Part List<MultipartBody.Part> files);
+
 }

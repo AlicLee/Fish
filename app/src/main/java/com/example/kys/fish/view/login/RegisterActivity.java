@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
 import com.example.kys.fish.presenter.impl.RegisterImpl;
-import com.example.kys.fish.presenter.impl.RegisterPresenter;
+import com.example.kys.fish.presenter.RegisterPresenter;
 import com.example.kys.fish.util.StringUtil;
 
 import java.util.regex.Matcher;

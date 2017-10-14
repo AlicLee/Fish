@@ -10,8 +10,8 @@ import java.util.List;
  * Created by Lee on 2017/10/7.
  */
 
-public class AddSessionImpl {
-    public interface View extends BaseView {
+public interface AddSessionImpl {
+    interface View extends BaseView {
         void setLoadingIndicator(boolean active);
 
         void showAddSessionSuccess();
@@ -19,7 +19,7 @@ public class AddSessionImpl {
         void showAddSessionError();
     }
 
-    public interface Presenter extends BasePresenter {
+    interface Presenter extends BasePresenter {
         void AddSession(String content, String time, List<ImageItem> imageItems);
     }
 }

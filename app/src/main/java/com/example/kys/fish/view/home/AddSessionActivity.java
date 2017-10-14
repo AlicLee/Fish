@@ -1,6 +1,7 @@
 package com.example.kys.fish.view.home;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -12,10 +13,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
@@ -78,6 +81,7 @@ public class AddSessionActivity extends BaseActivity implements ImagePickerAdapt
 
     private void init() {
         presenter = new AddSessionPresenter(this);
+        //sessionInputEdit.setFocusable(false);
         sessionInputEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -133,6 +137,10 @@ public class AddSessionActivity extends BaseActivity implements ImagePickerAdapt
         recyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(recyclerView) {
             @Override
             public void onLongClick(RecyclerView.ViewHolder vh) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm.isActive()) {   //如果为true,则是键盘正在显示
+                    HideKeyboard(findViewById(R.id.session_input_edit)); //隐藏键盘
+                }
                 RecyclerItemDeleteListener.deletePosition = vh.getLayoutPosition();
                 if (vh.getLayoutPosition() != selImageList.size()) {
                     itemTouchHelper.startDrag(vh);
@@ -301,11 +309,20 @@ public class AddSessionActivity extends BaseActivity implements ImagePickerAdapt
 
     @Override
     public void showAddSessionSuccess() {
-
+        Toast.makeText(getApplicationContext(), "发表成功", Toast.LENGTH_SHORT).show();
+        this.finish();
     }
 
     @Override
     public void showAddSessionError() {
 
+    }
+
+    // 隐藏虚拟键盘
+    public static void HideKeyboard(View v) {
+        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+        }
     }
 }

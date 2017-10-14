@@ -42,19 +42,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //网络请求
-    //V7库
-    //硬盘缓存
-    //    compile 'com.google.guava:guava:23.0'
-    //判空利器
-    //版本随意
-    //没有使用特殊Header，可以不加这行
     compile files('libs/jxl.jar')
     compile name: 'SMSSDK-3.0.0', ext: 'aar'
     compile name: 'SMSSDKGUI-3.0.0', ext: 'aar'
-
     compile files('libs/MobTools-2017.0607.1736.jar')
-
     compile files('libs/MobCommons-2017.0607.1736.jar')
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'

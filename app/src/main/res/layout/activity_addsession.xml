@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@drawable/tablayout_header">
 
         <ImageView
             android:id="@+id/session_leftback"
@@ -17,7 +18,7 @@
             android:layout_height="@dimen/mp_32"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/mp_8"
-            android:background="@mipmap/sciencedetail_leftback_blue" />
+            android:background="@mipmap/left_back_white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,14 +26,14 @@
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
             android:text="发表评论"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="@dimen/f_20" />
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/blue" />
+            android:background="@color/blue" />-->
 
         <ImageView
             android:id="@+id/publish_session"
@@ -44,7 +45,6 @@
             android:layout_marginEnd="@dimen/mp_10"
             android:layout_marginRight="@dimen/mp_10"
             android:background="@drawable/comment_submit_selector"
-            android:textColor="@color/blue"
             android:textSize="@dimen/f_20" />
     </RelativeLayout>
 

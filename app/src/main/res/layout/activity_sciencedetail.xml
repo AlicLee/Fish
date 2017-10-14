@@ -7,7 +7,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@drawable/tablayout_header">
 
         <ImageView
             android:id="@+id/sciencedetail_leftback"
@@ -15,7 +16,7 @@
             android:layout_height="@dimen/mp_32"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/mp_8"
-            android:background="@mipmap/sciencedetail_leftback_blue" />
+            android:background="@mipmap/left_back_white" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,14 +24,14 @@
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
             android:text="科普详情"
-            android:textColor="@color/blue"
+            android:textColor="@color/white"
             android:textSize="@dimen/f_20" />
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/blue" />
+            android:background="@color/blue" />-->
 
     </RelativeLayout>
 
@@ -62,8 +63,8 @@
                     android:id="@+id/name_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/name_title"
                     android:layout_alignTop="@id/name_title"
+                    android:layout_toRightOf="@+id/name_title"
                     android:textSize="18sp" />
 
                 <TextView
@@ -79,9 +80,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:layout_alignTop="@+id/type_title"
                     android:layout_toRightOf="@+id/type_title"
-                    android:textSize="18sp"
-                    android:layout_alignTop="@+id/type_title" />
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:id="@+id/fishImg"

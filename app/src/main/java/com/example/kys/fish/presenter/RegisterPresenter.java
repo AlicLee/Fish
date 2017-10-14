@@ -1,4 +1,4 @@
-package com.example.kys.fish.presenter.impl;
+package com.example.kys.fish.presenter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.util.Log;
 import com.example.kys.fish.httpnetworks.ApiService;
 import com.example.kys.fish.httpnetworks.BaseSubscriber;
 import com.example.kys.fish.httpnetworks.HttpMethods;
-import com.example.kys.fish.presenter.LoginPresenter;
+import com.example.kys.fish.presenter.impl.RegisterImpl;
 import com.example.kys.fish.view.login.RegisterActivity;
 
 import org.json.JSONException;
@@ -23,13 +23,13 @@ import rx.schedulers.Schedulers;
  * Created by kys on 2017/9/16.
  */
 
-public class RegisterPresenter implements RegisterImpl.Presenter{
+public class RegisterPresenter implements RegisterImpl.Presenter {
     @Nullable
     private int nickName;
     @Nullable
     private String passWord;
     @NonNull
-    private  String name;
+    private String name;
     //    private LoginRepository mLoginRepository;
     //    private LoginData mLoginData;
     private RegisterActivity mRegisterView;
@@ -54,16 +54,16 @@ public class RegisterPresenter implements RegisterImpl.Presenter{
 //            mLoginView.showLoginEmptyError();
 //            return;
 //        }
-       mRegisterView.setLoadingIndicator(true);
+        mRegisterView.setLoadingIndicator(true);
     }
 
     @Override
-    public void Register(String nickName,String nam, String passWord) {
+    public void Register(String nickName, String nam, String passWord) {
         JSONObject requestData = new JSONObject();
         try {
-            requestData.put("nickName",nickName);
-            requestData.put("name",name);
-            requestData.put("passWord",passWord);
+            requestData.put("nickName", nickName);
+            requestData.put("name", name);
+            requestData.put("passWord", passWord);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -71,7 +71,7 @@ public class RegisterPresenter implements RegisterImpl.Presenter{
 //        String token = DeviceIdFactory.getuniqueId(mLoginView);
 //        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("register",requestBody)
+                .executePost("register", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<ResponseBody>(mRegisterView) {

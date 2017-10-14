@@ -269,7 +269,7 @@ public class CommentListTextView extends android.support.v7.widget.AppCompatText
             /**
              * 如果不大于3条，则删除最后的换行
              */
-            mStringBuilder.delete (mStringBuilder.length () - 2, mStringBuilder.length ());
+            mStringBuilder.delete (mStringBuilder.length(), mStringBuilder.length ());
         }
         return mStringBuilder;
     }

@@ -73,7 +73,7 @@ public class ScienceDetailActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ScienceDetailActivity.this, ScienceImgDetailActivity.class);
-                intent.putExtra("imageName",mScienceData.getName().trim() + ".jpg");
+                intent.putExtra("imageName", mScienceData.getName().trim() + ".jpg");
                 startActivity(intent);
             }
         });

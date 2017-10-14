@@ -1,6 +1,7 @@
 package com.example.kys.fish.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Lee on 2017/9/30.
@@ -9,6 +10,7 @@ import java.io.Serializable;
 public class Session implements Serializable {
     int id, userId;
     String userName, sessionTime, sessionContent;
+    private List<Comment> commentList;
 
     public int getId() {
         return id;
@@ -53,5 +55,13 @@ public class Session implements Serializable {
     public Session setSessionContent(String sessionContent) {
         this.sessionContent = sessionContent;
         return this;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
     }
 }
