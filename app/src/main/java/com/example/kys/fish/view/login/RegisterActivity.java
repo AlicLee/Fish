@@ -28,22 +28,23 @@ import butterknife.OnClick;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
+import static com.example.kys.fish.R.id.phone_edit;
+import static com.example.kys.fish.R.id.verifyCode_edit;
+
 public class RegisterActivity extends BaseActivity implements RegisterImpl.View {
     int i = 60; // 设置短信验证提示时间为60s
     @InjectView(R.id.register_name)
     EditText registerName;
-    @InjectView(R.id.phone_edit)
+    @InjectView(phone_edit)
     EditText phoneEdit;
     @InjectView(R.id.passWord_edit)
     EditText passWordEdit;
-    @InjectView(R.id.verifyCode_edit)
+    @InjectView(verifyCode_edit)
     EditText verifyCodeEdit;
     @InjectView(R.id.verifyCode_btn)
     TextView verifyCodeBtn;
     @InjectView(R.id.register)
     Button register;
-    //    EditText []mEditTexts;
-//    Button[]mButtons;
     RegisterPresenter registerPresenter;
     Handler smsHandler;
 
@@ -52,15 +53,9 @@ public class RegisterActivity extends BaseActivity implements RegisterImpl.View 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.inject(this);
-        initView();
-        initSDK();//短信初始化
         registerPresenter = new RegisterPresenter(this);
     }
 
-    private void initView() {
-//        mEditTexts = new EditText[]{registerName, phoneEdit, verifyCodeEdit,passWordEdit};
-//        mButtons = new Button[]{ register};
-    }
 
     //启动短信验证
     private void initSDK() {
@@ -116,17 +111,19 @@ public class RegisterActivity extends BaseActivity implements RegisterImpl.View 
     }
 
 
-    @OnClick({R.id.register_name, R.id.phone_edit, R.id.verifyCode_edit, R.id.verifyCode_btn, R.id.register, R.id.passWord_edit})
+    @OnClick({R.id.register_name, phone_edit, verifyCode_edit, R.id.verifyCode_btn, R.id.register, R.id.passWord_edit})
     public void onViewClicked(View view) {
         String phoneNumbers;
         switch (view.getId()) {
             case R.id.register_name:
                 break;
-            case R.id.phone_edit:
+            case phone_edit:
                 break;
-            case R.id.verifyCode_edit:
+            case verifyCode_edit:
                 break;
             case R.id.verifyCode_btn:
+                if (! phoneEdit.getText().toString().equals("")){
+                    initSDK();
                 phoneNumbers = phoneEdit.getText().toString();
                 SMSSDK.getVerificationCode("86", phoneNumbers);
                 verifyCodeBtn.setClickable(false);// 设置按钮不可点击 显示倒计时
@@ -147,7 +144,7 @@ public class RegisterActivity extends BaseActivity implements RegisterImpl.View 
                         }
                         smsHandler.sendEmptyMessage(-8);// 在30秒后重新显示为获取验证码
                     }
-                }).start();
+                }).start();}
                 break;
             case R.id.register:
                 phoneNumbers = phoneEdit.getText().toString();

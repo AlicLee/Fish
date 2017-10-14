@@ -8,31 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选取相册"
-        android:textSize="35dp"
-        android:layout_gravity="center"
-        android:background="@drawable/selector_popup"
-        android:textColor="@color/white"
-
+        android:textSize="20dp"
+        android:textColor="@color/blue"
+        android:background="@color/white"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="1sp"
+        android:background="@color/gray_light"/>
     <Button
         android:id="@+id/camera_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="相机拍照"
-        android:textSize="35dp"
-        android:layout_gravity="center"
-        android:background="@drawable/selector_popup"
-        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textColor="@color/blue"
+        android:background="@color/white"
         />
     <Button
         android:id="@+id/cancel_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="取        消"
-        android:textSize="35dp"
-        android:layout_gravity="center"
-        android:background="@drawable/selector_popup"
-        android:textColor="@color/white"/>
+        android:textSize="20dp"
+        android:textColor="@color/blue"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"/>
 
 
 </LinearLayout>

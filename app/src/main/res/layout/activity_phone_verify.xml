@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+        <EditText
+            android:id="@+id/newPassword_edit"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:drawableLeft="@mipmap/newpassword"
+            android:hint="新密码"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="160dp"/>
+        <EditText
+            android:id="@+id/forgetPassWord_phoneEdit"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:drawableLeft="@mipmap/forgetphone"
+            android:layout_marginLeft="20dp"
+            android:hint="手机号码"
+            />
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/forgetPassword_verifyCode_edit"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:drawableLeft="@mipmap/fogetpassword_verify"
+            />
+
+        <TextView
+            android:layout_marginLeft="@dimen/mp_10"
+            android:id="@+id/forgetPassword_verifyCode_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textSize="@dimen/f_20"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:background="@color/blue"
+        android:textColor="@color/white"/>
+</LinearLayout>

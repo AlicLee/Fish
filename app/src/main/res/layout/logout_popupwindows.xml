@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+        <Button
+            android:id="@+id/logoutSure_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确认"
+            android:textSize="20dp"
+            android:textColor="@color/blue"
+            android:background="@color/white_gray"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"
+            android:background="@color/gray_light"/>
+        <Button
+            android:id="@+id/logoutCancel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:textSize="20dp"
+            android:textColor="@color/blue"
+            android:background="@color/white_gray"
+            android:layout_marginTop="10dp"
+            />
+
+
+</LinearLayout>
