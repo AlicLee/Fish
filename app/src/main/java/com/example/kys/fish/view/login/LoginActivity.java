@@ -13,6 +13,7 @@ import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.R;
 import com.example.kys.fish.presenter.LoginPresenter;
 import com.example.kys.fish.presenter.impl.LoginImpl;
+import com.example.kys.fish.util.StringUtil;
 import com.example.kys.fish.view.main.ForgetPasswordActivity;
 import com.example.kys.fish.view.main.MainActivity;
 
@@ -60,18 +61,18 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
 
     @OnClick(R.id.login_login)
     public void onViewClicked() {
-//        String nickName = loginNickName.getText().toString();
-//        String passWord = loginPassWord.getText().toString();
-//        if (StringUtil.isEmpty(nickName)) {
-//            Toast.makeText(getApplicationContext(), "账号不能为空", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        if (StringUtil.isEmpty(passWord)) {
-//            Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        loginPresenter.login(nickName, passWord);
-        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        String nickName = loginNickName.getText().toString();
+        String passWord = loginPassWord.getText().toString();
+        if (StringUtil.isEmpty(nickName)) {
+            Toast.makeText(getApplicationContext(), "账号不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (StringUtil.isEmpty(passWord)) {
+            Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        loginPresenter.login(nickName, passWord);
+//        startActivity(new Intent(LoginActivity.this,MainActivity.class));
     }
 
     @Override

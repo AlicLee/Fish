@@ -28,8 +28,8 @@ public class AddressActivity extends AppCompatActivity {
                             InputMethodManager.HIDE_NOT_ALWAYS);
                     selectAddress();//调用CityPicker选取区域
                 }
-
             }
+
         });
     }
 

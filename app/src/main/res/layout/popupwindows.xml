@@ -10,12 +10,16 @@
         android:text="选取相册"
         android:textSize="20dp"
         android:textColor="@color/blue"
-        android:background="@color/white"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/personselector"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="1sp"
-        android:background="@color/gray_light"/>
+        android:background="@color/gray_light"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
     <Button
         android:id="@+id/camera_btn"
         android:layout_width="match_parent"
@@ -23,8 +27,16 @@
         android:text="相机拍照"
         android:textSize="20dp"
         android:textColor="@color/blue"
-        android:background="@color/white"
+        android:background="@drawable/personselector"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="1sp"
+        android:background="@color/gray_light"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
     <Button
         android:id="@+id/cancel_btn"
         android:layout_width="match_parent"
@@ -32,8 +44,9 @@
         android:text="取        消"
         android:textSize="20dp"
         android:textColor="@color/blue"
-        android:background="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:background="@drawable/personselector"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
 
 </LinearLayout>

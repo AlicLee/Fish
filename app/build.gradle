@@ -87,4 +87,7 @@ dependencies {
     compile 'com.alibaba:fastjson:1.2.39'
     compile 'liji.library.dev:citypickerview:0.7.0'
     testCompile 'junit:junit:4.12'
+    //Material Dialogs
+    compile 'me.drakeet.materialdialog:library:1.3.1'
+
 }

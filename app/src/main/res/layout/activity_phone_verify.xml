@@ -64,6 +64,7 @@
         android:textSize="20dp"
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        android:background="@color/blue"
-        android:textColor="@color/white"/>
+        android:background="@drawable/commitselector"
+        android:textColor="@color/white"
+        />
 </LinearLayout>
