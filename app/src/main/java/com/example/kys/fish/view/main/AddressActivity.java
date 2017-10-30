@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kys.fish.R;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 
 public class AddressActivity extends AppCompatActivity {
-    TextView myAddress_tv,address_tv;
+    TextView myAddress_tv,address_tv,save_tv;
+    ImageView arrows_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,19 @@ public class AddressActivity extends AppCompatActivity {
                 }
             }
 
+        });
+        save_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+        arrows_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
         });
     }
 
@@ -77,6 +92,8 @@ public class AddressActivity extends AppCompatActivity {
     protected void initView() {
         myAddress_tv = (TextView) findViewById(R.id.myAddress_tv);
         address_tv=(TextView)findViewById(R.id.address_tv);
+        save_tv=(TextView)findViewById(R.id.save_tv);
+        arrows_back=(ImageView)findViewById(R.id.arrows_back);
     }
 }
 

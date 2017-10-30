@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tablayout_header">
+
+        <ImageView
+            android:id="@+id/businessdetail_leftback"
+            android:layout_width="@dimen/mp_32"
+            android:layout_height="@dimen/mp_32"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/mp_8"
+            android:background="@mipmap/left_back_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:text="交易"
+            android:textColor="@color/white"
+            android:textSize="@dimen/f_20" />
+
+        <!--<FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/blue" />-->
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/mp_8"
+            android:paddingRight="@dimen/mp_8"
+            android:paddingTop="@dimen/mp_8">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/business_title_tv"
+                    style="@style/ScienceDetailTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="高新店：" />
+
+                <TextView
+                    android:id="@+id/name_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/breedingCompany_introduce"
+                    style="@style/ScienceDetailTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:text="养殖企业介绍" />
+
+                <TextView
+                    android:id="@+id/type_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/fishImg"
+                    android:layout_width="200dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentRight="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/breedVarieties_introduce"
+                style="@style/ScienceDetailTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8"
+                android:text="养殖品种介绍" />
+
+            <com.example.kys.fish.customwidget.ExpandableTextView
+                android:id="@+id/brief_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8" />
+
+            <TextView
+                android:id="@+id/delivery_title"
+                style="@style/ScienceDetailTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8"
+                android:text="运送方式" />
+
+            <com.example.kys.fish.customwidget.ExpandableTextView
+                android:id="@+id/breadingPoint_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/contact_title"
+                style="@style/ScienceDetailTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/mp_8"
+                android:text="联系方式" />
+
+
+            <com.example.kys.fish.customwidget.ExpandableTextView
+                android:id="@+id/control_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

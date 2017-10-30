@@ -48,6 +48,7 @@ public class BusinessFragment extends Fragment {
         for (int i = 0; i < 10; i++) {
             businessData.add(new BusinessData().setBrief("这是简介").setRating("4.5").setSelled("月售249份").setTitle("咸鱼店"));
         }
+
         BusinessAdapter adapter = new BusinessAdapter(getActivity(), businessData);
         businessView.setAdapter(adapter);
     }

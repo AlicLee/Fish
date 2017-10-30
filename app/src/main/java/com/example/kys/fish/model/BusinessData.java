@@ -1,10 +1,12 @@
 package com.example.kys.fish.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Lee on 2017/9/27.
  */
 
-public class BusinessData {
+public class BusinessData implements Serializable {
     private String logoPath, rating, selled, brief, title;
 
     public String getBrief() {

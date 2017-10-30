@@ -19,7 +19,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
     private BaseActivity mContext;
 
     public BaseSubscriber(BaseActivity context) {
-        this.mContext = context;
+        this.mContext=context;
     }
 
     @Override
@@ -64,4 +64,5 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
     public void onNext(T t) {
 
     }
+
 }

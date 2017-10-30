@@ -56,12 +56,6 @@
             android:textSize="18dp"
             android:textColor="@color/black"
             />
-        <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@mipmap/arrows_blue"-->
-            <!--android:layout_marginTop="15dp"-->
-            <!--android:layout_marginLeft="200dp"/>-->
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
@@ -91,12 +85,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"/>
-        <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@mipmap/arrows_yellow"-->
-            <!--android:layout_marginTop="15dp"-->
-            <!--android:layout_marginLeft="200dp"/>-->
 
     </LinearLayout>
     <TextView
@@ -125,12 +113,6 @@
            android:textSize="18dp"
            android:layout_marginTop="10dp"
            android:layout_marginLeft="10dp"/>
-        <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@mipmap/arrows_green"-->
-            <!--android:layout_marginTop="15dp"-->
-            <!--android:layout_marginLeft="200dp"/>-->
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
