@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment implements HomeImpl.View {
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
+                presenter.getAllChat(0);
                 refreshlayout.finishRefresh(2000);
             }
         });

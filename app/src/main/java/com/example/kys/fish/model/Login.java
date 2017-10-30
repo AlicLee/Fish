@@ -8,18 +8,18 @@ public final class Login {
     @NonNull
     private String passWord;
     @NonNull
-    private int userId;
+    private int id;
     private String name;
     private String avatarPath;
 
+
     @NonNull
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public Login setUserId(@NonNull int userId) {
-        this.userId = userId;
-        return this;
+    public void setId(@NonNull int id) {
+        this.id = id;
     }
 
     public Login setNickName(@NonNull String nickName) {

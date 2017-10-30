@@ -48,7 +48,7 @@ public class AddSessionPresenter implements AddSessionImpl.Presenter {
         JSONObject requestData = new JSONObject();
         try {
             requestData.put("nickName", login.getNickName());
-            requestData.put("userId", login.getUserId());
+            requestData.put("userId", login.getId());
             requestData.put("userName", login.getName());
             requestData.put("sessionTime", DateUtil.getCurrentTime());
             requestData.put("sessionContent", content);
@@ -64,7 +64,7 @@ public class AddSessionPresenter implements AddSessionImpl.Presenter {
             partList.add(part);
         }
         ApiService service = HttpMethods.getInstance().createReq(ApiService.class);
-        Call<ResponseBody> call = service.upload("addChat", requestBody, partList);
+        Call<ResponseBody> call = service.upload("addOneChat.do", requestBody, partList);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call,

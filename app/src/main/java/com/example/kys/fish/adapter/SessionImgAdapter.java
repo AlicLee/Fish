@@ -27,13 +27,26 @@ public class SessionImgAdapter extends RecyclerView.Adapter<SessionImgAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.adapter_sessionimg, parent, false);
+        //动态设置ImageView的宽高，根据自己每行item数量计算
+        //dm.widthPixels-dip2px(20)即屏幕宽度-左右10dp+10dp=2换为px的宽度，最后/3得到每个item的宽高
+//        if (filePathList.length > 0) {
+//            int screenWidth = DensityUtil.initScreenWidth((Activity) context);
+//            int viewWidth;
+//            if (filePathList.length <= 3) {
+//                viewWidth = (screenWidth - DensityUtil.dip2px(context, 20)) / filePathList.length;
+//            } else {
+//                viewWidth = (screenWidth - DensityUtil.dip2px(context, 20)) / 3;
+//            }
+//            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(viewWidth, viewWidth);
+//            view.setLayoutParams(lp);
+//        }
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // if()
-        Glide.with(context).load(ApiService.BASE_URL+filePathList[position]).into(holder.img);
+        String path = ApiService.BASE_URL + filePathList[position];
+        Glide.with(context).load(path).into(holder.img);
     }
 
     @Override

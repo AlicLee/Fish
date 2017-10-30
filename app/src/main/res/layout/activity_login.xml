@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="70"
+        android:layout_weight="30"
         android:orientation="vertical">
 
         <ImageView
@@ -36,17 +37,18 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:password="true"
             android:drawableLeft="@drawable/password_editleft_selector"
-            android:hint="密码" />
+            android:hint="密码"
+            android:password="true" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/mp_20"
         android:layout_weight="30">
+
 
         <TextView
             android:id="@+id/register_tv"
@@ -75,6 +77,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/f_20" />
 
+
         <ImageView
             android:layout_width="100dp"
             android:layout_height="1dp"
@@ -91,6 +94,7 @@
             android:text="社交账号" />
 
         <ImageView
+            android:id="@+id/login_line"
             android:layout_width="100dp"
             android:layout_height="1dp"
             android:layout_alignParentRight="true"
@@ -98,13 +102,28 @@
             android:layout_marginTop="@dimen/mp_30"
             android:background="@color/gray_light" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/login_line">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/icon_login_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/mp_20"
+                android:background="@mipmap/ic_login_qq" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/mp_20"
+                android:background="@mipmap/ic_login_weichat" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

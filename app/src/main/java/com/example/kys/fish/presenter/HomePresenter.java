@@ -59,7 +59,7 @@ public class HomePresenter implements HomeImpl.Presenter {
 //        String token = DeviceIdFactory.getuniqueId(mLoginView);
 //        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("getAllChat", requestBody)
+                .executePost("getAllChat.do", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<ResponseBody>((BaseActivity) fragment.getActivity()) {
@@ -116,7 +116,7 @@ public class HomePresenter implements HomeImpl.Presenter {
 //        String token = DeviceIdFactory.getuniqueId(mLoginView);
 //        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("onChat", requestBody)
+                .executePost("addOneComment.do", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<ResponseBody>((BaseActivity) fragment.getActivity()) {
