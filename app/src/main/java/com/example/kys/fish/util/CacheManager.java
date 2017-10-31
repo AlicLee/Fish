@@ -73,11 +73,13 @@ public class CacheManager {
      * @param nickName 读取的值
      */
     public String readObject(String nickName) {
+        InputStream is = null;
+        DiskLruCache.Snapshot snapShot = null;
         try {
-            DiskLruCache.Snapshot snapShot = mDiskLruCache.get(nickName);
+            snapShot = mDiskLruCache.get(nickName);
             if (snapShot != null) {
                 //snapShot.getInputStream(0);传比disklrucache版本号小 这里穿0
-                InputStream is = snapShot.getInputStream(0);
+                is = snapShot.getInputStream(0);
                 byte[] by = new byte[1024];
                 int i = 0;
                 StringBuilder sb = new StringBuilder();
@@ -88,6 +90,17 @@ public class CacheManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (snapShot != null) {
+                snapShot.close();
+            }
         }
         return null;
     }

@@ -2,10 +2,12 @@ package com.example.kys.fish.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.kys.fish.R;
@@ -32,6 +34,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         //        ImageView homeImage;
         TextView homeContent;
         CommentListTextView comment_List;
+        FrameLayout line;
 
         public ViewHolder(View view) {
             super(view);
@@ -40,6 +43,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 //            homeImage = (ImageView) view.findViewById(R.id.home_adapter_img);
             homeContent = (TextView) view.findViewById(R.id.home_content);
             comment_List = (CommentListTextView) view.findViewById(R.id.comment_list);
+            line = (FrameLayout) view.findViewById(R.id.line);
         }
     }
 
@@ -71,19 +75,44 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         Home home = mSessionList.get(position);
         holder.homeContent.setText(home.getSessionContent());
         String filesPath = home.getSessionFiles();
-        String[] filePathList = filesPath.split(",");
-        SessionImgAdapter adapter = new SessionImgAdapter(context, filePathList);
-        holder.imgRecyclerView.setAdapter(adapter);
-        List<Comment> commentList = home.getCommentList();
-        for (int i = 0; i < commentList.size(); i++) {
-            Comment comment = commentList.get(i);
-            if (comment.getReceiversId() == login.getUserId()) {
-                commentList.add(new Comment().setId(comment.getId()).setCommentContent(comment.getCommentContent()).setSendName(comment.getSendName()));
-            } else {
-                commentList.add(new Comment().setId(comment.getId()).setCommentContent(comment.getCommentContent()).setSendName(comment.getSendName()).setReceiversName(comment.getReceiversName()));
-            }
+        final String[] filePathList = filesPath.split(",");
+        if (filePathList.length != 0) {
+            SessionImgAdapter adapter = new SessionImgAdapter(context, filePathList);
+            GridLayoutManager manager = new GridLayoutManager(context, 3);
+            manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    if (filePathList.length == 0) {
+                        return 0;
+                    } else {
+                        return filePathList.length <= 3 ? 3 / filePathList.length : 1;
+                    }
+
+                }
+            });
+            holder.imgRecyclerView.setLayoutManager(manager);
+            holder.imgRecyclerView.setAdapter(adapter);
+        } else {
+            holder.imgRecyclerView.setVisibility(View.GONE);
         }
-        holder.comment_List.setData(commentList);
+        List<Comment> commentList = home.getCommentList();
+        if (commentList == null) {
+            holder.comment_List.setVisibility(View.GONE);
+            holder.line.setVisibility(View.GONE);
+        } else if (commentList.size() == 0) {
+            holder.comment_List.setVisibility(View.GONE);
+            holder.line.setVisibility(View.GONE);
+        } else {
+            for (int i = 0; i < commentList.size(); i++) {
+                Comment comment = commentList.get(i);
+                if (comment.getReceiversId() == login.getId()) {
+                    commentList.add(new Comment().setId(comment.getId()).setCommentContent(comment.getCommentContent()).setSendName(comment.getSendName()));
+                } else {
+                    commentList.add(new Comment().setId(comment.getId()).setCommentContent(comment.getCommentContent()).setSendName(comment.getSendName()).setReceiversName(comment.getReceiversName()));
+                }
+            }
+            holder.comment_List.setData(commentList);
+        }
 //        Glide.with(context).load(login.getAvatarPath()).into(holder.homeImage);
 //        holder.homeContent.setText(home.getContent());
         //使用glide来加载图片

@@ -71,7 +71,7 @@ public class RegisterPresenter implements RegisterImpl.Presenter {
 //        String token = DeviceIdFactory.getuniqueId(mLoginView);
 //        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("register", requestBody)
+                .executePost("register.do", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<ResponseBody>(mRegisterView) {

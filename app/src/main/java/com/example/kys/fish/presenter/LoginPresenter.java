@@ -73,7 +73,7 @@ public class LoginPresenter implements LoginImpl.Presenter {
 //        String token = DeviceIdFactory.getuniqueId(mLoginView);
 //        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("login", requestBody)
+                .executePost("login.do", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseSubscriber<ResponseBody>(mLoginView) {
@@ -93,8 +93,9 @@ public class LoginPresenter implements LoginImpl.Presenter {
                             JSONObject jsonObject = new JSONObject(InterceptorUtils.getRspData(responseBody));
                             Log.e(TAG, "respone:" + jsonObject);
                             String Code = jsonObject.getString("Code");
+                            String data = jsonObject.getString("data");
                             if (Code.equals("1")) {
-                                login = new Gson().fromJson(jsonObject.toString(), Login.class);
+                                login = new Gson().fromJson(data, Login.class);
                                 mLoginView.showLoginSuccess();
                             } else if (Code.equals("0")) {
                                 mLoginView.showLoginError();
