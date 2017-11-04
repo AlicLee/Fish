@@ -15,9 +15,6 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import rx.Observable;
 
-/**
- * Created by Lee on 2017/9/7.
- */
 
 public interface ApiService {
     public static final String BASE_URL = "http://118.89.235.172/";

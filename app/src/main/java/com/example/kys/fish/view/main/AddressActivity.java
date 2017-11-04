@@ -6,22 +6,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.kys.fish.R;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 
 public class AddressActivity extends AppCompatActivity {
-    TextView myAddress_tv,address_tv,save_tv;
-    ImageView arrows_back;
+    TextView myAddress_tv, address_tv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
         initView();
-       myAddress_tv.setOnClickListener(new View.OnClickListener() {
+        myAddress_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -32,19 +31,6 @@ public class AddressActivity extends AppCompatActivity {
                 }
             }
 
-        });
-        save_tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
-        arrows_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
         });
     }
 
@@ -69,9 +55,9 @@ public class AddressActivity extends AppCompatActivity {
         //监听方法，获取选择结果
         /**
          * 1.citySelected[0]：表示：省份信息
-           2.citySelected[1]：表示：城市信息
-           3.citySelected[2]：表示：区县信息
-           4.citySelected[3]：表示：邮编信息
+         2.citySelected[1]：表示：城市信息
+         3.citySelected[2]：表示：区县信息
+         4.citySelected[3]：表示：邮编信息
          */
         cityPicker.setOnCityItemClickListener(new CityPicker.OnCityItemClickListener() {
             @Override
@@ -89,11 +75,12 @@ public class AddressActivity extends AppCompatActivity {
             }
         });
     }
+
     protected void initView() {
         myAddress_tv = (TextView) findViewById(R.id.myAddress_tv);
-        address_tv=(TextView)findViewById(R.id.address_tv);
-        save_tv=(TextView)findViewById(R.id.save_tv);
-        arrows_back=(ImageView)findViewById(R.id.arrows_back);
+        address_tv = (TextView) findViewById(R.id.address_tv);
+//        save_tv=(TextView)findViewById(R.id.save_tv);
+//        arrows_back=(ImageView)findViewById(R.id.arrows_back);
     }
 }
 

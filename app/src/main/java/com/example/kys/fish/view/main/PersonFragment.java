@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.kys.fish.R;
 import com.example.kys.fish.model.MyApplication;
+import com.example.kys.fish.presenter.PersonPresenter;
+import com.example.kys.fish.presenter.impl.PersonImpl;
 
 import java.io.File;
 
@@ -32,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import me.drakeet.materialdialog.MaterialDialog;
 
 
-public class PersonFragment extends Fragment {
+public class PersonFragment extends Fragment implements PersonImpl.View {
     View mView;
     @InjectView(R.id.personalHead_img)
     CircleImageView personalHeadImg;
@@ -53,6 +55,7 @@ public class PersonFragment extends Fragment {
     private static final int REQUEST_TO_CAMERA = 3;
     private static final String fileName = "temp.jpg";
     private File tempFile;
+    PersonPresenter personPresenter;
 
     @Nullable
     @Override
@@ -164,9 +167,10 @@ public class PersonFragment extends Fragment {
      * @param requestCode
      * @param resultCode
      * @param data
+     *
      */
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PHOTO_REQUEST_GALLERY) {
@@ -180,14 +184,17 @@ public class PersonFragment extends Fragment {
         } else if (requestCode == PHOTO_REQUEST_CUT) {
             // 从剪切图片返回的数据
             if (data != null) {
+//                String personalHead = personalHeadTv.getText().toString();
+//                personPresenter.person(personalHead);
+                showPersonSuccess();
                 Bitmap bitmap = data.getParcelableExtra("data");
                 personalHeadImg.setBackground(null);//覆盖头像
                 personalHeadTv.setText(null);//覆盖“点击上传”这几个字
                 personalHeadImg.setImageBitmap(bitmap);//将图片显示在imageView上面
-
+//                getActivity().finish();
 
             } else {
-                Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
+                showPersonError();
 
             }
         }
@@ -203,15 +210,38 @@ public class PersonFragment extends Fragment {
         } else if (requestCode == PHOTO_REQUEST_CUT) {
 
             if (data != null) {
+//                String personalHead = personalHeadTv.getText().toString();
+//                personPresenter.person(personalHead);
+                showPersonSuccess();
                 Bitmap bitmap = data.getParcelableExtra("data");
                 personalHeadImg.setBackground(null);//覆盖头像
                 personalHeadTv.setText(null);//覆盖“点击上传”这几个字
                 personalHeadImg.setImageBitmap(bitmap);
+//                getActivity().finish();
             } else {
-                Toast.makeText(getActivity(), "网络不给力", Toast.LENGTH_SHORT).show();
+               showPersonError();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+    @Override
+    public void setPresenter(Object presenter) {
+        this.personPresenter = (PersonPresenter)presenter;
+    }
+
+    @Override
+    public void setLoadingIndicator(boolean active) {
+
+    }
+
+    @Override
+    public void showPersonSuccess() {
+        Toast.makeText(getActivity(), "头像上传成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showPersonError() {
+        Toast.makeText(getActivity(), "头像上传失败", Toast.LENGTH_SHORT).show();
     }
 
 

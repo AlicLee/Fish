@@ -1,16 +1,16 @@
 package com.example.kys.fish.presenter;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.example.kys.fish.BaseActivity;
 import com.example.kys.fish.httpnetworks.ApiService;
 import com.example.kys.fish.httpnetworks.BaseSubscriber;
 import com.example.kys.fish.httpnetworks.HttpMethods;
-import com.example.kys.fish.model.Login;
-import com.example.kys.fish.presenter.impl.LoginImpl;
+import com.example.kys.fish.model.Person;
+import com.example.kys.fish.presenter.impl.PersonImpl;
 import com.example.kys.fish.util.InterceptorUtils;
-import com.example.kys.fish.view.login.LoginActivity;
+import com.example.kys.fish.view.main.PersonFragment;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -22,57 +22,44 @@ import okhttp3.ResponseBody;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static com.example.kys.fish.config.AppConfig.login;
+import static com.example.kys.fish.config.AppConfig.person;
 
-public class LoginPresenter implements LoginImpl.Presenter {
-    @Nullable
-    private String nickName;
-    @Nullable
-    private String passWord;
-    //    private LoginRepository mLoginRepository;
-    //    private LoginData mLoginData;
-    private LoginActivity mLoginView;
-    private final String TAG = LoginPresenter.class.getSimpleName();
 
-    public LoginPresenter(@NonNull LoginActivity LoginView) {
-        this.mLoginView = LoginView;
-//        mLoginView = checkNotNull(mLoginView, "loginView 不能为空");
-        mLoginView.setPresenter(this);
+public class PersonPresenter implements PersonImpl.Presenter {
+    private PersonFragment mPersonView;
+    private final String TAG = PersonPresenter.class.getSimpleName();
+
+    public PersonPresenter(@NonNull PersonFragment PersonView) {
+        this.mPersonView = PersonView;
+        mPersonView.setPresenter(this);
     }
 
-    @Override
+   @Override
     public void start() {
-        LoginTask();
+        PersonTask();
     }
 
     /**
      * 开始加载任务
      */
-    private void LoginTask() {
-//        if (mLoginData.getNickName().length() != 0 && mLoginData.getPassWord().length() != 0) {
-//            mLoginView.showLoginEmptyError();
-//            return;
-//        }
-        mLoginView.setLoadingIndicator(true);
+    private void PersonTask() {
+        mPersonView.setLoadingIndicator(true);
     }
 
     @Override
-    public void login(String nickName, String passWord) {
+    public void person(String personalHead) {
         JSONObject requestData = new JSONObject();
         try {
-            requestData.put("nickName", nickName);
-            requestData.put("passWord", passWord);
+            requestData.put("personalHead", personalHead);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         final RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), requestData.toString());
-//        String token = DeviceIdFactory.getuniqueId(mLoginView);
-//        map.put("DeviceId", token);
         HttpMethods.getInstance().createReq(ApiService.class)
-                .executePost("login.do", requestBody)
+                .executePost("person.do", requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseSubscriber<ResponseBody>(mLoginView) {
+                .subscribe(new BaseSubscriber<ResponseBody>((BaseActivity)mPersonView.getActivity()) {
                     @Override
                     public void onCompleted() {
                     }
@@ -80,7 +67,7 @@ public class LoginPresenter implements LoginImpl.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "e:" + e);
-                        mLoginView.showLoginError();
+                        mPersonView.showPersonError();
                     }
 
                     @Override
@@ -91,15 +78,14 @@ public class LoginPresenter implements LoginImpl.Presenter {
                             String Code = jsonObject.getString("Code");
                             String data = jsonObject.getString("data");
                             if (Code.equals("1")) {
-                                login = new Gson().fromJson(data, Login.class);
-                                mLoginView.showLoginSuccess();
+                               person= new Gson().fromJson(data,Person.class);
+                                mPersonView.showPersonSuccess();
                             } else if (Code.equals("0")) {
-                                mLoginView.showLoginError();
+                                mPersonView.showPersonError();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-//                        mLoginView.showLoginSuccess();
                     }
                 });
     }

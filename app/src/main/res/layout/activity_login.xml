@@ -2,26 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/login_bg"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="30"
+        android:layout_weight="4"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="@dimen/mp_24"
-            android:layout_height="@dimen/mp_24"
-            android:layout_marginLeft="@dimen/mp_16"
-            android:layout_marginTop="@dimen/mp_16"
-            android:background="@mipmap/login_back" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/tablayout_header">
+
+            <ImageView
+                android:layout_width="@dimen/mp_40"
+                android:layout_height="@dimen/mp_40"
+                android:paddingBottom="@dimen/mp_4"
+                android:paddingTop="@dimen/mp_4"
+                android:src="@mipmap/left_back_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f_18" />
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_above="@+id/login_nickName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/mp_20"
+            android:src="@mipmap/icon" />
 
         <EditText
             android:id="@+id/login_nickName"
@@ -47,7 +70,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/mp_20"
-        android:layout_weight="30">
+        android:layout_weight="2">
 
 
         <TextView
@@ -55,7 +78,8 @@
             style="@style/TextSelectorStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户注册" />
+            android:text="用户注册"
+            android:textColor="@color/blue_light" />
 
         <TextView
             android:id="@+id/forgetpassword_tv"
@@ -63,7 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="忘记密码?" />
+            android:text="忘记密码?"
+            android:textColor="@color/blue_light" />
 
         <Button
             android:id="@+id/login_login"
@@ -78,53 +103,33 @@
             android:textSize="@dimen/f_20" />
 
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:layout_below="@+id/login_login"
-            android:layout_marginTop="@dimen/mp_30"
-            android:background="@color/gray_light" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login_login"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/mp_24"
-            android:text="社交账号" />
-
-        <ImageView
-            android:id="@+id/login_line"
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/login_login"
-            android:layout_marginTop="@dimen/mp_30"
-            android:background="@color/gray_light" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/login_line">
-
-            <ImageView
-                android:id="@+id/icon_login_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/mp_20"
-                android:background="@mipmap/ic_login_qq" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/mp_20"
-                android:background="@mipmap/ic_login_weichat" />
-        </RelativeLayout>
-
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@mipmap/bottom_bg">
+
+        <ImageView
+            android:id="@+id/icon_login_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/imageView2"
+            android:layout_marginLeft="80dp"
+            android:layout_marginStart="80dp"
+            android:background="@mipmap/ic_login_qq" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_toEndOf="@+id/icon_login_qq"
+            android:layout_toRightOf="@+id/icon_login_qq"
+            android:background="@mipmap/ic_login_weichat" />
+    </RelativeLayout>
 </LinearLayout>
