@@ -17,8 +17,8 @@ import rx.Observable;
 
 
 public interface ApiService {
-    public static final String BASE_URL = "http://118.89.235.172/";
-//    public static final String BASE_URL = "http://10.0.1.28/";
+    //    public static final String BASE_URL = "http://118.89.235.172/";
+    public static final String BASE_URL = "http://10.0.1.28/";
 
     //    @FormUrlEncoded
     @GET("{url}")

@@ -87,11 +87,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                     } else {
                         return filePathList.length <= 3 ? 3 / filePathList.length : 1;
                     }
-
                 }
             });
             holder.imgRecyclerView.setLayoutManager(manager);
             holder.imgRecyclerView.setAdapter(adapter);
+            holder.imgRecyclerView.setVisibility(View.VISIBLE);
         } else {
             holder.imgRecyclerView.setVisibility(View.GONE);
         }

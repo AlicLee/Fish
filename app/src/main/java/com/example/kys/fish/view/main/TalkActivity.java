@@ -73,7 +73,7 @@ public class TalkActivity extends AppCompatActivity {
         talk_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(TalkActivity.this,HomeFragment.class);
+                Intent intent = new Intent(TalkActivity.this, HomeFragment.class);
                 startActivity(intent);
             }
         });
@@ -149,7 +149,7 @@ public class TalkActivity extends AppCompatActivity {
             // 从剪切图片返回的数据
             if (data != null) {
                 Bitmap bitmap = data.getParcelableExtra("data");
-               addTalk_img.setImageBitmap(bitmap);//将图片显示在imageView上面
+                addTalk_img.setImageBitmap(bitmap);//将图片显示在imageView上面
 
 
             } else {

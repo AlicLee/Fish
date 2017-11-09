@@ -18,6 +18,7 @@
             android:background="@drawable/tablayout_header">
 
             <ImageView
+                android:id="@+id/login_left_back"
                 android:layout_width="@dimen/mp_40"
                 android:layout_height="@dimen/mp_40"
                 android:paddingBottom="@dimen/mp_4"

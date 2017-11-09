@@ -1,89 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/white"
+	android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/tablayout_header">
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="40dp"
+		android:background="@drawable/tablayout_header">
 
-        <ImageView
-            android:layout_width="@dimen/mp_40"
-            android:layout_height="@dimen/mp_40"
-            android:paddingBottom="@dimen/mp_4"
-            android:paddingTop="@dimen/mp_4"
-            android:src="@mipmap/left_back_white" />
+		<ImageView
+			android:id="@+id/forgetpassword_left_back"
+			android:layout_width="@dimen/mp_40"
+			android:layout_height="@dimen/mp_40"
+			android:paddingBottom="@dimen/mp_4"
+			android:paddingTop="@dimen/mp_4"
+			android:src="@mipmap/left_back_white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="忘记密码"
-            android:textColor="@color/white"
-            android:textSize="@dimen/f_18" />
-    </RelativeLayout>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:text="忘记密码"
+			android:textColor="@color/white"
+			android:textSize="@dimen/f_18" />
+	</RelativeLayout>
 
-    <EditText
-        android:id="@+id/newPassword_edit"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="120dp"
-        android:drawableLeft="@mipmap/newpassword"
-        android:hint="新密码"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+	<EditText
+		android:id="@+id/newPassword_edit"
+		android:layout_width="290dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:layout_marginTop="120dp"
+		android:drawableLeft="@mipmap/newpassword"
+		android:hint="新密码"
+		android:textColor="@color/black"
+		android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/forgetPassWord_phoneEdit"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:drawableLeft="@mipmap/forgetphone"
-        android:hint="手机号码"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+	<EditText
+		android:id="@+id/forgetPassWord_phoneEdit"
+		android:layout_width="290dp"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="20dp"
+		android:drawableLeft="@mipmap/forgetphone"
+		android:hint="手机号码"
+		android:textColor="@color/black"
+		android:textSize="20dp" />
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:weightSum="1">
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:orientation="horizontal"
+		android:weightSum="1">
 
-        <EditText
-            android:id="@+id/forgetPassword_verifyCode_edit"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:drawableLeft="@mipmap/fogetpassword_verify"
-            android:textColor="@color/black"
-            android:textSize="20dp" />
+		<EditText
+			android:id="@+id/forgetPassword_verifyCode_edit"
+			android:layout_width="180dp"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+			android:drawableLeft="@mipmap/fogetpassword_verify"
+			android:textColor="@color/black"
+			android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/forgetPassword_verifyCode_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="@dimen/mp_10"
-            android:gravity="center"
-            android:text="获取验证码"
-            android:textColor="@color/blue_light"
-            android:textSize="@dimen/f_20" />
-    </LinearLayout>
+		<TextView
+			android:id="@+id/forgetPassword_verifyCode_tv"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_alignParentRight="true"
+			android:layout_marginLeft="@dimen/mp_10"
+			android:gravity="center"
+			android:text="获取验证码"
+			android:textColor="@color/blue_light"
+			android:textSize="@dimen/f_20" />
+	</LinearLayout>
 
-    <Button
-        android:id="@+id/submit_btn"
-        android:layout_width="215dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/login_btn_bg"
-        android:text="提交"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
+	<Button
+		android:id="@+id/submit_btn"
+		android:layout_width="215dp"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginTop="30dp"
+		android:background="@drawable/login_btn_bg"
+		android:text="提交"
+		android:textColor="@color/white"
+		android:textSize="20dp" />
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<ImageView
+			android:layout_width="match_parent"
+			android:layout_height="150dp"
+			android:layout_alignParentBottom="true"
+			android:background="@mipmap/bottom_bg" />
+	</RelativeLayout>
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,8 @@ public class RegisterActivity extends BaseActivity implements RegisterImpl.View 
     TextView verifyCodeBtn;
     @InjectView(R.id.register)
     Button register;
+    @InjectView(R.id.register_left_back)
+    ImageView left_back_img;
     RegisterPresenter registerPresenter;
     Handler smsHandler;
 
@@ -110,41 +113,41 @@ public class RegisterActivity extends BaseActivity implements RegisterImpl.View 
         SMSSDK.registerEventHandler(eventHandler);
     }
 
-
-    @OnClick({R.id.register_name, phone_edit, verifyCode_edit, R.id.verifyCode_btn, R.id.register, R.id.passWord_edit})
+    @OnClick({R.id.register_name, R.id.register_left_back, R.id.phone_edit, R.id.verifyCode_edit, R.id.verifyCode_btn, R.id.register, R.id.passWord_edit})
     public void onViewClicked(View view) {
         String phoneNumbers;
         switch (view.getId()) {
             case R.id.register_name:
                 break;
-            case phone_edit:
+            case R.id.phone_edit:
                 break;
-            case verifyCode_edit:
+            case R.id.verifyCode_edit:
                 break;
             case R.id.verifyCode_btn:
-                if (! phoneEdit.getText().toString().equals("")){
+                if (!phoneEdit.getText().toString().equals("")) {
                     initSDK();
-                phoneNumbers = phoneEdit.getText().toString();
-                SMSSDK.getVerificationCode("86", phoneNumbers);
-                verifyCodeBtn.setClickable(false);// 设置按钮不可点击 显示倒计时
-                verifyCodeBtn.setText("重新发送(" + i + ")");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (; i > 0; i--) {
-                            smsHandler.sendEmptyMessage(-9);
-                            if (i <= 0) {
-                                break;
+                    phoneNumbers = phoneEdit.getText().toString();
+                    SMSSDK.getVerificationCode("86", phoneNumbers);
+                    verifyCodeBtn.setClickable(false);// 设置按钮不可点击 显示倒计时
+                    verifyCodeBtn.setText("重新发送(" + i + ")");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            for (; i > 0; i--) {
+                                smsHandler.sendEmptyMessage(-9);
+                                if (i <= 0) {
+                                    break;
+                                }
+                                try {
+                                    Thread.sleep(1000);// 线程休眠实现读秒功能
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
-                            try {
-                                Thread.sleep(1000);// 线程休眠实现读秒功能
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            smsHandler.sendEmptyMessage(-8);// 在30秒后重新显示为获取验证码
                         }
-                        smsHandler.sendEmptyMessage(-8);// 在30秒后重新显示为获取验证码
-                    }
-                }).start();}
+                    }).start();
+                }
                 break;
             case R.id.register:
                 phoneNumbers = phoneEdit.getText().toString();
@@ -162,6 +165,9 @@ public class RegisterActivity extends BaseActivity implements RegisterImpl.View 
                 }
                 SMSSDK.submitVerificationCode("86", phoneNumbers, verifyCodeEdit.getText().toString());
                 createProgressBar();
+                break;
+            case R.id.register_left_back:
+                this.finish();
                 break;
         }
     }

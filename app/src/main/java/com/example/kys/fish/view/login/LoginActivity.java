@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.example.kys.fish.presenter.impl.LoginImpl;
 import com.example.kys.fish.util.StringUtil;
 import com.example.kys.fish.view.main.ForgetPasswordActivity;
 import com.example.kys.fish.view.main.MainActivity;
+import com.example.kys.fish.view.main.PhoneVerifyActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -32,6 +34,8 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
     EditText loginPassWord;
     @InjectView(R.id.login_login)
     Button loginLogin;
+    @InjectView(R.id.login_left_back)
+    ImageView left_img;
     LoginPresenter loginPresenter;
     private TextView register_tv;
     private TextView forgetpassword_tv;
@@ -53,25 +57,32 @@ public class LoginActivity extends BaseActivity implements LoginImpl.View {
         forgetpassword_tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, ForgetPasswordActivity.class));
+                startActivity(new Intent(LoginActivity.this, PhoneVerifyActivity.class));
 
             }
         });
     }
 
-    @OnClick(R.id.login_login)
-    public void onViewClicked() {
-        String nickName = loginNickName.getText().toString();
-        String passWord = loginPassWord.getText().toString();
-        if (StringUtil.isEmpty(nickName)) {
-            Toast.makeText(getApplicationContext(), "账号不能为空", Toast.LENGTH_SHORT).show();
-            return;
+    @OnClick({R.id.login_login, R.id.login_left_back})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.login_login:
+                String nickName = loginNickName.getText().toString();
+                String passWord = loginPassWord.getText().toString();
+                if (StringUtil.isEmpty(nickName)) {
+                    Toast.makeText(getApplicationContext(), "账号不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (StringUtil.isEmpty(passWord)) {
+                    Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                loginPresenter.login(nickName, passWord);
+                break;
+            case R.id.login_left_back:
+                this.finish();
+                break;
         }
-        if (StringUtil.isEmpty(passWord)) {
-            Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        loginPresenter.login(nickName, passWord);
 //        startActivity(new Intent(LoginActivity.this,MainActivity.class));
     }
 

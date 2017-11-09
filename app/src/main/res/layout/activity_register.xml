@@ -14,6 +14,7 @@
         android:background="@drawable/tablayout_header">
 
         <ImageView
+            android:id="@+id/register_left_back"
             android:layout_width="@dimen/mp_40"
             android:layout_height="@dimen/mp_40"
             android:paddingBottom="@dimen/mp_4"
@@ -63,6 +64,7 @@
             android:id="@+id/verifyCode_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="验证码"
             android:layout_marginRight="@dimen/mp_10"
             android:layout_toLeftOf="@+id/verifyCode_btn"
             android:drawableLeft="@drawable/verifycode_editleft_selector"

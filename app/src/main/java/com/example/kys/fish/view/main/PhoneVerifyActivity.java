@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,8 @@ public class PhoneVerifyActivity extends AppCompatActivity {
     Button submitBtn;
     @InjectView(R.id.forgetPassWord_phoneEdit)
     EditText forgetPassWordPhoneEdit;
+    @InjectView(R.id.forgetpassword_left_back)
+    ImageView left_back_img;
     Handler smsHandler;
     int i = 60; // 设置短信验证提示时间为60s
     @InjectView(R.id.newPassword_edit)
@@ -54,17 +57,15 @@ public class PhoneVerifyActivity extends AppCompatActivity {
         String digists = "1234567890qwertyuiopasdfghjklzxcvbnm";
         /**设置密码不可见*/
         newPasswordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-
-
     }
 
-    @OnClick({R.id.forgetPassword_verifyCode_edit, forgetPassword_verifyCode_tv, R.id.submit_btn, R.id.forgetPassWord_phoneEdit, R.id.newPassword_edit})
+    @OnClick({R.id.forgetPassword_verifyCode_edit, R.id.forgetpassword_left_back, R.id.forgetPassword_verifyCode_tv, R.id.submit_btn, R.id.forgetPassWord_phoneEdit, R.id.newPassword_edit})
     public void onViewClicked(View view) {
         String phoneNumbers;
         switch (view.getId()) {
             case R.id.forgetPassword_verifyCode_edit:
                 break;
-            case forgetPassword_verifyCode_tv:
+            case R.id.forgetPassword_verifyCode_tv:
                 if (!forgetPassWordPhoneEdit.getText().toString().equals("")) {
                     initSDK();
                     phoneNumbers = forgetPassWordPhoneEdit.getText().toString();
@@ -106,6 +107,9 @@ public class PhoneVerifyActivity extends AppCompatActivity {
             case R.id.forgetPassWord_phoneEdit:
                 break;
             case R.id.newPassword_edit:
+                break;
+            case R.id.forgetpassword_left_back:
+                this.finish();
                 break;
         }
     }
@@ -190,7 +194,6 @@ public class PhoneVerifyActivity extends AppCompatActivity {
         mProBar.setVisibility(View.VISIBLE);
         layout.addView(mProBar);
     }
-
 
 
 }
